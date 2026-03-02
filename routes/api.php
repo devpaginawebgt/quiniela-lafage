@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ApiAuthController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EstadioController;
 use App\Http\Controllers\GrupoController;
@@ -32,6 +33,23 @@ Route::middleware('api.key')->controller(ApiAuthController::class)->group(functi
 
 Route::middleware(['auth:sanctum'])->group(function() {
 
+    // Users
+
+    Route::controller(UserController::class)->group(function() {
+        Route::get('user', 'getUser');
+        Route::get('user/rank', 'getUserRank');
+        Route::get('ranking', 'getRanking');
+        // Route::get('users', 'getUsers');
+    });
+
+    Route::controller(UserPushTokenController::class)->group(function() {
+        Route::post('users/push-tokens', 'store');
+    });
+
+    Route::controller(CountryController::class)->prefix('paises')->group(function() {
+        Route::get('', 'index');
+    });
+
     Route::controller(ApiAuthController::class)->group(function() {
         Route::delete('logout', 'logout');
         Route::delete('logout-all', 'logoutAll');
@@ -62,19 +80,6 @@ Route::middleware(['auth:sanctum'])->group(function() {
 
     Route::controller(EstadioController::class)->group(function() {
         Route::get('estadios', 'getEstadios');
-    });
-
-    // Users
-
-    Route::controller(UserController::class)->group(function() {
-        Route::get('user', 'getUser');
-        Route::get('user/rank', 'getUserRank');
-        Route::get('ranking', 'getRanking');
-        // Route::get('users', 'getUsers');
-    });
-
-    Route::controller(UserPushTokenController::class)->group(function() {
-        Route::post('users/push-tokens', 'store');
     });
 
     // Premios

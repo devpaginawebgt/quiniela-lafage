@@ -10,16 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class UserService {
 
-    public function getPaises()
-    {
-        return Country::select('name', 'country_code', 'timezone', 'is_active')->get();
-    }
-
-    public function getPais(string|int $id_pais)
-    {   
-        return Country::find($id_pais);
-    }
-
     public function getUsers()
     {
 
