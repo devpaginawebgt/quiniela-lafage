@@ -35,81 +35,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $this->authenticate($request);
+        $request->authenticate();
 
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
-    }
-
-    
-    /**
-     * Attempt to authenticate the request's credentials.
-     *
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function authenticate(LoginRequest $request)
-    {
-        $this->ensureIsNotRateLimited($request);
-
-        $data = $request->validated();
-
-        $user = User::where('numero_documento', $data['numero_documento'])->first();
-
-        if (empty($user)) {
-            RateLimiter::hit($this->throttleKey($request));
-
-            throw ValidationException::withMessages([
-                'numero_documento' => 'El número de documento ingresado no está registrado en el sistema.',
-            ]);
-        }
-
-        $credentials = ['email' => $user->email, 'password' => env('DEFAULT_PASS')];
-
-        if (! Auth::attempt($credentials)) {
-            throw ValidationException::withMessages([
-                'numero_documento' => 'Ha ocurrido un error al iniciar la sesión, contacta a Soporte',
-            ]);
-        }
-
-        RateLimiter::clear($this->throttleKey($request));
-    }
-
-    /**
-     * Ensure the login request is not rate limited.
-     *
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function ensureIsNotRateLimited(LoginRequest $request)
-    {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey($request), 10)) {
-            return;
-        }
-
-        event(new Lockout($request));
-
-        $seconds = RateLimiter::availableIn($this->throttleKey($request));
-
-        throw ValidationException::withMessages([
-            'numero_documento' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
-        ]);
-    }
-
-    /**
-     * Get the rate limiting throttle key for the request.
-     *
-     * @return string
-     */
-    public function throttleKey($request)
-    {
-        return Str::lower($request->input('numero_documento')).'|'.$request->ip();
     }
 
     /**

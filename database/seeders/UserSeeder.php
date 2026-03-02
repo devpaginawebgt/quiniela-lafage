@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'direccion'        =>  'Ciudad de Guatemala',
                 'pais_id'          =>  1,
                 'user_type_id'     =>  1,
-                'password'         =>  Hash::make(env('DEFAULT_PASS')),
+                'password'         =>  Hash::make('FScomunica2'),
                 'created_at'       =>  (Carbon::now())->toDateTimeString(),
             ],
             [
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
                 'direccion'        =>  'Ciudad de Guatemala',
                 'pais_id'          =>  1,
                 'user_type_id'     =>  1,
-                'password'         =>  Hash::make(env('DEFAULT_PASS')),
+                'password'         =>  Hash::make('FScomunica2'),
                 'created_at'       =>  (Carbon::now())->toDateTimeString(),
             ],
             [
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 'direccion'        =>  'Ciudad de Guatemala',
                 'pais_id'          =>  1,
                 'user_type_id'     =>  2,
-                'password'         =>  Hash::make(env('DEFAULT_PASS')),
+                'password'         =>  Hash::make('FScomunica2'),
                 'created_at'       =>  (Carbon::now())->toDateTimeString(),
             ],
             [
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
                 'direccion'        =>  'Ciudad de Guatemala',
                 'pais_id'          =>  1,
                 'user_type_id'     =>  2,
-                'password'         =>  Hash::make(env('DEFAULT_PASS')),
+                'password'         =>  Hash::make('FScomunica2'),
                 'created_at'       =>  (Carbon::now())->toDateTimeString(),
             ],
         ];
