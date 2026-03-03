@@ -31,14 +31,14 @@ class UserService {
             ->first();
     }
 
-    public function getRanking($id_pais)
+    public function getRanking($line_id)
     {
         $participantes = User::select('id', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'email', 'puntos', 'created_at')
             ->selectRaw('RANK() OVER (ORDER BY puntos DESC, nombres ASC) as posicion')
+            ->where('line_id', $line_id)
             ->has('predictions')
-            ->where('status_user', 1)
-            ->where('pais_id', $id_pais)
             ->where('puntos', '>', 0)
+            ->where('status_user', 1)
             ->get();
 
         return $participantes;
@@ -49,9 +49,9 @@ class UserService {
     {
         $rankingQuery = User::select('id', 'nombres', 'apellidos', 'pais_id', 'puntos', 'created_at')
             ->selectRaw('RANK() OVER (ORDER BY puntos DESC, nombres ASC) as posicion')
+            ->where('line_id', $user->line_id)
             ->has('predictions')
             ->where('status_user', 1)
-            ->where('pais_id', $user->pais_id)
             ->where('puntos', '>', 0);
         
         $rank = DB::query()

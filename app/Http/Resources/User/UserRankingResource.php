@@ -44,6 +44,7 @@ class UserRankingResource extends JsonResource
             'puntos'        => $this->puntos,
             'posicion'      => $this->posicion,
             'color'         => $color,
+            'pais'          => $this->country->name,
             'fechaRegistro' => $fecha_registro->format('Y-m-d H:i:s'),
         ];
     }

@@ -63,9 +63,9 @@ class UserController extends Controller
     {
         $user = $request->user();
 
-        $id_pais = (int) $user->pais_id;
+        $line_id = (int) $user->line_id;
 
-        $participantes = $this->userService->getRanking($id_pais);
+        $participantes = $this->userService->getRanking($line_id);
 
         $participantes = UserRankingResource::collection($participantes);
 
