@@ -24,10 +24,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Auth
+// Rutas públicas
 
-Route::middleware('api.key')->controller(ApiAuthController::class)->group(function() {
-    Route::post('login', 'login');
+Route::middleware('api.key')->group(function() {
+
+    Route::controller(ApiAuthController::class)->group(function() {
+        Route::post('login', 'login');
+
+        Route::post('registro/dependiente', 'register');
+        Route::post('registro/doctor', 'registerDoctor');
+    });
+
+    Route::controller(CountryController::class)->prefix('paises')->group(function() {
+        Route::get('', 'index');
+    });
+    
+    Route::controller(LineController::class)->prefix('lineas')->group(function() {
+        Route::get('', 'index');
+    });
+
 });
 
 // Rutas protegidas
@@ -45,14 +60,6 @@ Route::middleware(['auth:sanctum'])->group(function() {
 
     Route::controller(UserPushTokenController::class)->group(function() {
         Route::post('users/push-tokens', 'store');
-    });
-
-    Route::controller(CountryController::class)->prefix('paises')->group(function() {
-        Route::get('', 'index');
-    });
-
-    Route::controller(LineController::class)->prefix('lineas')->group(function() {
-        Route::get('', 'index');
     });
 
     Route::controller(ApiAuthController::class)->group(function() {

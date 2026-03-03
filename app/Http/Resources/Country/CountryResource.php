@@ -19,7 +19,6 @@ class CountryResource extends JsonResource
             'name'         => $this->name,
             'country_code' => $this->country_code,
             'timezone'     => $this->timezone,
-            'is_active'    => $this->is_active
         ];
     }
 }

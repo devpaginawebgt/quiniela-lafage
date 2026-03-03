@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ApiLoginRequest;
+use App\Http\Requests\Auth\ApiRegisterDoctorRequest;
+use App\Http\Requests\Auth\ApiRegisterRequest;
 use App\Http\Resources\User\UserRankResource;
 use App\Http\Services\UserService;
+use App\Models\User;
 use App\Traits\ApiResponse;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -44,6 +48,62 @@ class ApiAuthController extends Controller
         $user = $this->userService->getUserRank($user);
 
         $user = $this->userService->getUserPredictionsCount($user);
+
+        $user = new UserRankResource($user);
+
+        return $this->successResponse([
+            'token' => $token,
+            'user' => $user,
+        ]);
+    }
+
+    public function register(ApiRegisterRequest $request)
+    {   
+        $data = $request->validated();
+
+        $data['user_type_id'] = 1;
+        
+        $data['password'] = Hash::make($data['password']);
+
+        $data['puntos'] = 0;
+
+        $user = User::create($data);
+
+        event(new Registered($user));
+
+        $token = $user->createToken('mobile-app')->plainTextToken;
+
+        $user = $this->userService->getUserRank($user);
+
+        // $user = $this->userService->getUserPredictionsCount($user);
+
+        $user = new UserRankResource($user);
+
+        return $this->successResponse([
+            'token' => $token,
+            'user' => $user,
+        ]);
+    }
+
+    public function registerDoctor(ApiRegisterDoctorRequest $request)
+    {
+        $data = $request->validated();
+
+        $data['user_type_id'] = 2;
+
+        $data['password'] = Hash::make($data['password']);
+
+        $data['puntos'] = 0;
+
+        $user = User::create($data);
+
+        event(new Registered($user));
+
+        $token = $user->createToken('mobile-app')->plainTextToken;
+
+        $user = $this->userService->getUserRank($user);
+
+        // $user = $this->userService->getUserPredictionsCount($user);
 
         $user = new UserRankResource($user);
 

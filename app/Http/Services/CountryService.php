@@ -8,7 +8,9 @@ class CountryService {
 
     public function getCountries()
     {
-        return Country::select('id', 'name', 'country_code', 'timezone', 'is_active')->get();
+        return Country::select('id', 'name', 'country_code', 'timezone', 'is_active')
+            ->where('is_active', true)
+            ->get();
     }
 
     public function getCountry(string|int $id_pais)
