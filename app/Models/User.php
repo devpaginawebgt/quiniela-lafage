@@ -69,10 +69,10 @@ class User extends Authenticatable
         return $this->belongsTo(UserType::class, 'user_type_id');
     }
 
-    public function codigo() : BelongsTo
-    {
-        return $this->belongsTo(Codigo::class, 'codigo_id');
-    }
+    // public function codigo() : BelongsTo
+    // {
+    //     return $this->belongsTo(Codigo::class, 'codigo_id');
+    // }
 
     public function pushTokens(): HasMany
     {
@@ -87,5 +87,10 @@ class User extends Authenticatable
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'pais_id');
+    }
+
+    public function line(): BelongsTo
+    {
+        return $this->belongsTo(Line::class, 'line_id');
     }
 }

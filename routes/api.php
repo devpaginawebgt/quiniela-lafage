@@ -6,6 +6,7 @@ use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EstadioController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\JornadaController;
+use App\Http\Controllers\LineController;
 use App\Http\Controllers\PremioController;
 use App\Http\Controllers\ResultadoPartidoController;
 use App\Http\Controllers\UserController;
@@ -47,6 +48,10 @@ Route::middleware(['auth:sanctum'])->group(function() {
     });
 
     Route::controller(CountryController::class)->prefix('paises')->group(function() {
+        Route::get('', 'index');
+    });
+
+    Route::controller(LineController::class)->prefix('lineas')->group(function() {
         Route::get('', 'index');
     });
 
