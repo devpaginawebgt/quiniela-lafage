@@ -3,13 +3,12 @@
 namespace App\Http\Services;
 
 use App\Models\Premio;
-use Illuminate\Database\Eloquent\Builder;
 
 class PremioService {
 
-    public function getPremios($id_pais)
+    public function getPremios($line_id)
     {
-        return Premio::where('pais_id', $id_pais)->get();
+        return Premio::where('line_id', $line_id)->get();
     }
 
 }

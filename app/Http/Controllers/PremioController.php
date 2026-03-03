@@ -26,9 +26,7 @@ class PremioController extends Controller
 
         $user = $request->user();
 
-        $id_pais = (int) $user->pais_id;
-
-        $premios = $this->premioService->getPremios($id_pais);
+        $premios = $this->premioService->getPremios($user->line_id);
 
         $premios = PremioResource::collection($premios);
 

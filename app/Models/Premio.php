@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Premio extends Model
 {
@@ -17,8 +18,12 @@ class Premio extends Model
         'nombre',
         'descripcion',
         'imagen',
-        'pais_id',
+        'line_id',
     ];
 
+    public function line(): BelongsTo
+    {
+        return $this->belongsTo(Line::class, 'line_id');
+    }
     
 }

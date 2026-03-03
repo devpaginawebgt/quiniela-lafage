@@ -15,4 +15,10 @@ class Line extends Model
     {
         return $this->hasMany(User::class, 'line_id');
     }
+
+    public function premios(): HasMany
+    {
+        return $this->hasMany(Premio::class, 'line_id');
+    }
+
 }
