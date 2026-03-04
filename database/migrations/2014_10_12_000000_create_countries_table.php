@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
+            $table->string('image');
             $table->string('country_code');
+            $table->string('area_code');
             $table->string('timezone');
             $table->boolean('is_active');
 

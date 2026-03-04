@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Country;
 
+use App\Http\Services\HelperService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,8 +18,9 @@ class CountryResource extends JsonResource
         return [
             'id'           => $this->id,
             'name'         => $this->name,
+            'image'        => HelperService::ImagePath($this->image),
             'country_code' => $this->country_code,
-            'timezone'     => $this->timezone,
+            'area_code'    => $this->area_code,
         ];
     }
 }

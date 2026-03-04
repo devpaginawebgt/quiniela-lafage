@@ -15,44 +15,56 @@ class CountrySeeder extends Seeder
     {
         Country::create([
             'name'         => 'Guatemala',
-            'country_code' => '502',
+            'image'        => '/images/countries/flag-gt.png',
+            'country_code' => 'GT',
+            'area_code'    => '502',
             'timezone'     => 'GMT-6',
-            'is_active'       => true
+            'is_active'    => true
         ]);
 
         Country::create([
             'name'         => 'Honduras',
-            'country_code' => '504',
+            'image'        => '/images/countries/flag-hn.png',
+            'country_code' => 'HN',
+            'area_code'    => '504',
             'timezone'     => 'GMT-6',
-            'is_active'       => true
+            'is_active'    => true
         ]);
 
         Country::create([
             'name'         => 'Panamá',
-            'country_code' => '507',
+            'image'        => '/images/countries/flag-pa.png',
+            'country_code' => 'PA',
+            'area_code'    => '507',
             'timezone'     => 'GMT-5',
-            'is_active'       => true
+            'is_active'    => true
         ]);
 
         Country::create([
             'name'         => 'Nicaragua',
-            'country_code' => '505',
+            'image'        => '/images/countries/flag-ni.png',
+            'country_code' => 'NI',
+            'area_code'    => '505',
             'timezone'     => 'GMT-6',
-            'is_active'       => true
+            'is_active'    => true
         ]);
 
         Country::create([
             'name'         => 'Costa Rica',
-            'country_code' => '506',
+            'image'        => '/images/countries/flag-cr.png',
+            'country_code' => 'CR',
+            'area_code'    => '506',
             'timezone'     => 'GMT-6',
-            'is_active'       => true
+            'is_active'    => true
         ]);
 
         Country::create([
             'name'         => 'República Dominicana',
-            'country_code' => '1',
+            'image'        => '/images/countries/flag-do.png',
+            'country_code' => 'DO',
+            'area_code'    => '1',
             'timezone'     => 'GMT-4',
-            'is_active'       => false
+            'is_active'    => false
         ]);
     }
 }
