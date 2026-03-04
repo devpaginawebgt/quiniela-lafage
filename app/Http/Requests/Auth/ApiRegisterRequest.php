@@ -85,9 +85,9 @@ class ApiRegisterRequest extends FormRequest
             'line_id.integer'  => 'La línea seleccionada no es válida.',
             'line_id.exists'   => 'La línea seleccionada no existe en nuestros registros.',
 
-            'user_type_id.required' => 'Por favor seleccione la línea de medicamentos en la que participará.',
-            'user_type_id.integer'  => 'La línea seleccionada no es válida.',
-            'user_type_id.exists'   => 'La línea seleccionada no existe en nuestros registros.',
+            'user_type_id.required' => 'El tipo de usuario es incorrecto.',
+            'user_type_id.integer'  => 'El tipo de usuario es incorrecto.',
+            'user_type_id.exists'   => 'No se encontró el tipo de usuario.',
 
             // COLEGIADO
             'colegiado.required_if' => 'Por favor, ingrese su número de colegiado.',
