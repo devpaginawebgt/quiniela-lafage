@@ -32,6 +32,16 @@ class ApiRegisterRequest extends FormRequest
 
             'password'         => ['required', 'confirmed', Password::defaults()],
 
+            'user_type_id'     => ['required', 'integer', 'exists:user_types,id'],
+            'colegiado' => [
+                'nullable',
+                'required_if:user_type_id,2',
+                'prohibited_unless:user_type_id,2',
+                'string',
+                'max:10',
+                'unique:users'
+            ],
+
             // 'codigo_id'        => ['required', 'string', 'exists:codigos,name'],
             // 'telefono'         => ['required', 'string', 'max:20'],
             // 'direccion'        => ['required', 'string', 'max:255'],
@@ -74,6 +84,17 @@ class ApiRegisterRequest extends FormRequest
             'line_id.required' => 'Por favor seleccione la línea de medicamentos en la que participará.',
             'line_id.integer'  => 'La línea seleccionada no es válida.',
             'line_id.exists'   => 'La línea seleccionada no existe en nuestros registros.',
+
+            'user_type_id.required' => 'Por favor seleccione la línea de medicamentos en la que participará.',
+            'user_type_id.integer'  => 'La línea seleccionada no es válida.',
+            'user_type_id.exists'   => 'La línea seleccionada no existe en nuestros registros.',
+
+            // COLEGIADO
+            'colegiado.required_if' => 'Por favor, ingrese su número de colegiado.',
+            'colegiado.prohibited_unless' => 'El número de colegiado solo aplica para usuarios tipo doctor.',
+            'colegiado.string' => 'Ingrese un número de colegiado válido.',
+            'colegiado.max' => 'El número de colegiado no puede tener más de 10 caracteres.',
+            'colegiado.unique' => 'Ya existe un usuario registrado con este número de colegiado.',
 
 
             // TELEFONO

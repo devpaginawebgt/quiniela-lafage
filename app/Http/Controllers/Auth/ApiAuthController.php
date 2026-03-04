@@ -60,37 +60,7 @@ class ApiAuthController extends Controller
     public function register(ApiRegisterRequest $request)
     {   
         $data = $request->validated();
-
-        $data['user_type_id'] = 1;
         
-        $data['password'] = Hash::make($data['password']);
-
-        $data['puntos'] = 0;
-
-        $user = User::create($data);
-
-        event(new Registered($user));
-
-        $token = $user->createToken('mobile-app')->plainTextToken;
-
-        $user = $this->userService->getUserRank($user);
-
-        // $user = $this->userService->getUserPredictionsCount($user);
-
-        $user = new UserRankResource($user);
-
-        return $this->successResponse([
-            'token' => $token,
-            'user' => $user,
-        ]);
-    }
-
-    public function registerDoctor(ApiRegisterDoctorRequest $request)
-    {
-        $data = $request->validated();
-
-        $data['user_type_id'] = 2;
-
         $data['password'] = Hash::make($data['password']);
 
         $data['puntos'] = 0;
