@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('area_code');
             $table->string('document_name');
             $table->string('document_regex');
+            $table->string('document_regex_message');
             $table->string('timezone');
             $table->boolean('is_active');
 

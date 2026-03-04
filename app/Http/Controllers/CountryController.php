@@ -17,6 +17,28 @@ class CountryController extends Controller
 
     public function index(Request $request)
     {   
+        $country_code = $request->input('country_code');
+
+        if (!empty($country_code)) {
+
+            $country = $this->countryService->getCountryByCode($country_code);
+
+            if (empty($country)) {
+
+                return $this->errorResponse('No se encontró el código de país', 422);
+
+            }
+
+            if ($country->is_active === false) {
+
+                return $this->errorResponse('El código de país está inactivo en la plataforma', 422);
+
+            }
+
+            return new CountryResource($country);
+
+        }
+
         $countries = $this->countryService->getCountries();
 
         return CountryResource::collection($countries);

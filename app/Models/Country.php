@@ -13,6 +13,7 @@ class Country extends Model
         'area_code',
         'document_name',
         'document_regex',
+        'document_regex_message',
         'timezone',
         'is_active'
     ];

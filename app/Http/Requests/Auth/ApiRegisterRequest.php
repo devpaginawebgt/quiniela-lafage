@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\Country;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -25,7 +26,7 @@ class ApiRegisterRequest extends FormRequest
         return [
             'nombres'          => ['required', 'string', 'max:60'],
             'apellidos'        => ['required', 'string', 'max:60'],
-            'numero_documento' => ['required', 'integer', 'digits_between:6,13', 'unique:users,numero_documento'],
+            'numero_documento' => ['required', 'string', 'min:6', 'max:20', 'unique:users,numero_documento'],
             'email'            => ['required', 'email', 'max:255', 'unique:users'],
             'pais_id'          => ['required', 'integer', 'exists:countries,id'],
             'line_id'          => ['required', 'integer', 'exists:lines,id'],
@@ -51,6 +52,24 @@ class ApiRegisterRequest extends FormRequest
         ];
     }
 
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($validator->errors()->has('pais_id') || $validator->errors()->has('numero_documento')) {
+                return;
+            }
+
+            $country = Country::find($this->pais_id);
+
+            if ($country && $country->document_regex && !preg_match($country->document_regex, $this->numero_documento)) {
+                $validator->errors()->add(
+                    'numero_documento',
+                    $country->document_regex_message ?? 'El formato del documento no es válido.'
+                );
+            }
+        });
+    }
+
     public function messages(): array
     {
         return [
@@ -65,10 +84,11 @@ class ApiRegisterRequest extends FormRequest
             'apellidos.max'      => 'El campo apellidos no debe superar los 60 caracteres.',
 
             // NUMERO DOCUMENTO
-            'numero_documento.required'       => 'Por favor, ingrese su Número de Documento.',
-            'numero_documento.integer'        => 'El campo número de documento solo debe contener números.',
-            'numero_documento.digits_between' => 'El número de documento debe tener entre 6 y 13 dígitos.',
-            'numero_documento.unique'         => 'Ya existe un usuario registrado con este Número de Documento.',
+            'numero_documento.required' => 'Por favor, ingrese su número de documento.',
+            'numero_documento.string'   => 'El número de documento debe ser un texto válido.',
+            'numero_documento.min'      => 'El número de documento debe tener al menos 6 caracteres.',
+            'numero_documento.max'      => 'El número de documento no puede tener más de 20 caracteres.',
+            'numero_documento.unique'   => 'Ya existe un usuario registrado con este número de documento.',
 
             // EMAIL
             'email.required' => 'Por favor, ingrese su correo electrónico.',

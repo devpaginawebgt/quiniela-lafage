@@ -16,13 +16,14 @@ class CountryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'             => $this->id,
-            'name'           => $this->name,
-            'image'          => HelperService::ImagePath($this->image),
-            'country_code'   => $this->country_code,
-            'document_name'  => $this->document_name,
-            'document_regex' => $this->document_regex,
-            'area_code'      => $this->area_code,
+            'id'                     => $this->id,
+            'name'                   => $this->name,
+            'image'                  => HelperService::ImagePath($this->image),
+            'country_code'           => $this->country_code,
+            'document_name'          => $this->document_name,
+            'document_regex'         => $this->document_regex,
+            'document_regex_message' => $this->document_regex_message,
+            'area_code'              => $this->area_code,
         ];
     }
 }

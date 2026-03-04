@@ -17,4 +17,9 @@ class CountryService {
         return Country::find($id_pais);
     }
 
+    public function getCountryByCode(string $country_code)
+    {   
+        return Country::where('country_code', $country_code)->first();
+    }
+
 }
