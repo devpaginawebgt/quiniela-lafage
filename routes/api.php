@@ -32,8 +32,7 @@ Route::middleware('api.key')->group(function() {
     Route::controller(ApiAuthController::class)->group(function() {
         Route::post('login', 'login');
 
-        Route::post('registro/dependiente', 'register');
-        Route::post('registro/doctor', 'registerDoctor');
+        Route::post('registro', 'register');
     });
 
     Route::controller(CountryController::class)->prefix('paises')->group(function() {
