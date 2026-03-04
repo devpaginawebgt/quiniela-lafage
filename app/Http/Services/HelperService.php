@@ -25,4 +25,11 @@ class HelperService
 
         return $baseUrl . $path;
     }
+
+    public static function DefaultUserImagePath(): string
+    {
+        $baseUrl = env('APP_URL');
+
+        return $baseUrl . '/images/decoracion/avatar.png';
+    }
 }

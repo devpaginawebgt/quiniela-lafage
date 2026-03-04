@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             [
                 'nombres'          =>  'Dennis',
                 'apellidos'        =>  'PWG',
+                'image'            =>  null,
                 'numero_documento' =>  '1234567891111',
                 'email'            =>  'dev@paginawebguatemala.com',
                 // 'codigo_id'        =>  1,
@@ -35,6 +36,7 @@ class UserSeeder extends Seeder
             [
                 'nombres'          =>  'Dwight',
                 'apellidos'        =>  'PWG',
+                'image'            =>  null,
                 'numero_documento' =>  '1234567891112',
                 'email'            =>  'app@paginawebguatemala.com',
                 // 'codigo_id'        =>  2,
@@ -50,6 +52,7 @@ class UserSeeder extends Seeder
             [
                 'nombres'          =>  'Revisor',
                 'apellidos'        =>  'Google',
+                'image'            =>  null,
                 'numero_documento' =>  '1234567891113',
                 'email'            =>  'revisor@gmail.com',
                 // 'codigo_id'        =>  13,
@@ -65,6 +68,7 @@ class UserSeeder extends Seeder
             [
                 'nombres'          =>  'Revisor',
                 'apellidos'        =>  'IOS',
+                'image'            =>  null,
                 'numero_documento' =>  '1234567891114',
                 'email'            =>  'revisorios@gmail.com    ',
                 // 'codigo_id'        =>  14,

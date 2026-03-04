@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Services\HelperService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -41,6 +42,7 @@ class UserRankingResource extends JsonResource
             'id'            => $this->id,
             'nombres'       => $this->nombres,
             'apellidos'     => $this->apellidos,
+            'image'         => empty($this->image) ? HelperService::DefaultUserImagePath() : HelperService::ImagePath($this->image),
             'puntos'        => $this->puntos,
             'posicion'      => $this->posicion,
             'color'         => $color,

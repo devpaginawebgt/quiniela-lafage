@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
 
             $table->string('nombres');
             $table->string('apellidos');
+            $table->string('image')->nullable();
             $table->string('numero_documento');
             $table->string('email')->unique();
             $table->integer('puntos')->index()->default(0);
