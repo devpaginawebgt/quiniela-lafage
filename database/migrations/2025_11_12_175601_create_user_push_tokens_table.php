@@ -13,10 +13,16 @@ return new class extends Migration
     {
         Schema::create('user_push_tokens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('user_id');
             $table->string('device_token', 1024);
             $table->string('device_platform');
             $table->boolean('is_active')->default(true);
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

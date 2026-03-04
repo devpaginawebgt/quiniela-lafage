@@ -22,8 +22,11 @@ class CreatePreccionsTable extends Migration
             $table->integer('status')->index()->default(0);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onUpdate('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->foreign('partido_id')->references('id')->on('partidos')
                 ->onUpdate('cascade')
