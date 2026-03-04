@@ -18,7 +18,7 @@ class CountryUserResource extends JsonResource
         return [
             'id'                     => $this->id,
             'name'                   => $this->name,
-            'country_code'           => $this->country_code,
+            'countryCode'            => $this->country_code,
             'image'                  => HelperService::ImagePath($this->image),
         ];
     }
