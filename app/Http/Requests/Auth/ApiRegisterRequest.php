@@ -61,7 +61,7 @@ class ApiRegisterRequest extends FormRequest
 
             $country = Country::find($this->pais_id);
 
-            if ($country && $country->document_regex && !preg_match($country->document_regex, $this->numero_documento)) {
+            if ($country && $country->document_regex && !preg_match("/{$country->document_regex}/", $this->numero_documento)) {
                 $validator->errors()->add(
                     'numero_documento',
                     $country->document_regex_message ?? 'El formato del documento no es válido.'
