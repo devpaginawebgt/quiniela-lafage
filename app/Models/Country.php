@@ -11,6 +11,8 @@ class Country extends Model
         'image',
         'country_code',
         'area_code',
+        'document_name',
+        'document_regex',
         'timezone',
         'is_active'
     ];
