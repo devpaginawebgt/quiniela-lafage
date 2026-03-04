@@ -24,10 +24,19 @@ class UserService {
         return User::find($userId);
     }
 
-    public function getUserLogin(ApiLoginRequest $request)
+    public function getLoginDependiente(ApiLoginRequest $request)
     {
-        return User::where('email', $request->email)
-            ->select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'puntos', 'status_user', 'created_at')
+        return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'puntos', 'status_user', 'created_at')
+            ->where('numero_documento', $request->input('identity'))
+            ->where('user_type_id', $request->input('user_type_id'))
+            ->first();
+    }
+
+    public function getLoginDoctor(ApiLoginRequest $request)
+    {
+        return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'puntos', 'status_user', 'created_at')
+            ->where('colegiado', $request->input('identity'))
+            ->where('user_type_id', $request->input('user_type_id'))
             ->first();
     }
 

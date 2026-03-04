@@ -27,7 +27,37 @@ class ApiAuthController extends Controller
     {
         $request->ensureIsNotRateLimited($request);
 
-        $user = $this->userService->getUserLogin($request);        
+        $user = null;
+
+        if ($request->input('user_type_id') === 1) {
+
+            $user = $this->userService->getLoginDependiente($request);
+
+        } elseif ($request->input('user_type_id') === 2) {
+
+            $user = $this->userService->getLoginDoctor($request);
+
+        }
+
+        if (empty($user)) {
+
+            $error_message = '';
+
+            switch($request->input('user_type_id')) {
+                case 1:
+                    $error_message = 'No se encontró un dependiente registrado con este número de documento.';
+                    break;
+                case 2:
+                    $error_message = 'No se encontró un doctor registrado con este número de colegiado.';
+                    break;
+                default:
+                    $error_message = 'No se encontró un usuario con este número de documento o colegiado.';
+                    break;
+            }
+
+            return $this->errorResponse($error_message, 401);
+
+        }
 
         if ($user->status_user == 0) {
 
@@ -39,7 +69,7 @@ class ApiAuthController extends Controller
 
             RateLimiter::hit($request->throttleKey());
 
-            return $this->errorResponse('Credenciales incorrectas, revisa tu correo electrónico o contraseña.', 401);
+            return $this->errorResponse('Credenciales incorrectas, revisa la información ingresada.', 401);
 
         }
 

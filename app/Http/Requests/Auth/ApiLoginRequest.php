@@ -27,8 +27,9 @@ class ApiLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email', 'exists:users,email'],
-            'password' => ['required', 'string'],
+            'user_type_id' => ['required', 'integer', 'exists:user_types,id'],
+            'identity'     => ['required', 'string', 'min:2', 'max:20'],
+            'password'     => ['required', 'string'],
         ];
     }
 
@@ -36,13 +37,17 @@ class ApiLoginRequest extends FormRequest
     {
         
         return [
-            'email.required' => 'Por favor llene el campo correo electrónico.',
-            'email.string' => 'El correo electrónico debe contener texto.',
-            'email.email' => 'Por favor ingrese un correo electrónico válido.',
-            'email.exists' => 'No encontramos un usuario con esta dirección de correo electrónico.',
+            'user_type_id.required' => 'El tipo de usuario es incorrecto.',
+            'user_type_id.integer'  => 'El tipo de usuario es incorrecto.',
+            'user_type_id.exists'   => 'No se encontró el tipo de usuario.',
+        
+            'identity.required' => 'Ingrese su número de documento o colegiado.',
+            'identity.string'   => 'El número de documento o colegiado no es válido.',
+            'identity.min'      => 'El número de documento o colegiado debe contener como mínimo 2 caracteres.',
+            'identity.max'      => 'El número de documento o colegiado debe contener como máximo 20 caracteres.',
 
             'password.required' => 'Por favor llene el campo contraseña.',
-            'password.string' => 'La contraseña debe contener texto.',
+            'password.string' => 'El campo contraseña debe contener texto.',
         ];
         
     }
@@ -56,14 +61,14 @@ class ApiLoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited()
     {
-        if (RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (RateLimiter::tooManyAttempts($this->throttleKey(), 8)) {
             
             $seconds = RateLimiter::availableIn($this->throttleKey());
     
             $minutes = ceil($seconds / 60);
     
             throw ValidationException::withMessages([
-                'email' => trans('auth.throttle', [
+                'identity' => trans('auth.throttle', [
                     'seconds' => $seconds,
                     'minutes' => $minutes,
                 ]),
@@ -79,6 +84,6 @@ class ApiLoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('email')).'|'.$this->ip();
+        return Str::lower($this->input('identity')).'|'.$this->ip();
     }
 }
