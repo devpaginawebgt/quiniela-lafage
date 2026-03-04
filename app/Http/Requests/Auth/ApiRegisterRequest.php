@@ -24,10 +24,10 @@ class ApiRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombres'          => ['required', 'string', 'max:60'],
-            'apellidos'        => ['required', 'string', 'max:60'],
+            'nombres'          => ['required', 'string', 'min:2', 'max:40'],
+            'apellidos'        => ['required', 'string', 'min:2', 'max:40'],
             'numero_documento' => ['required', 'string', 'min:6', 'max:20', 'unique:users,numero_documento'],
-            'email'            => ['required', 'email', 'max:255', 'unique:users'],
+            'email'            => ['required', 'email',  'min:5', 'max:255', 'unique:users'],
             'pais_id'          => ['required', 'integer', 'exists:countries,id'],
             'line_id'          => ['required', 'integer', 'exists:lines,id'],
 
@@ -75,13 +75,15 @@ class ApiRegisterRequest extends FormRequest
         return [
             // NOMBRES
             'nombres.required' => 'Por favor, ingrese su nombre.',
-            'nombres.string'   => 'El campo nombres debe contener texto.',
-            'nombres.max'      => 'El campo nombres no debe superar los 60 caracteres.',
+            'nombres.string'   => 'El campo nombre debe contener texto.',
+            'nombres.min'      => 'El campo nombre debe contener al menos 2 caracteres.',
+            'nombres.max'      => 'El campo nombre no debe superar los 40 caracteres.',
 
             // APELLIDOS
             'apellidos.required' => 'Por favor, ingrese su apellido.',
-            'apellidos.string'   => 'El campo apellidos debe contener texto.',
-            'apellidos.max'      => 'El campo apellidos no debe superar los 60 caracteres.',
+            'apellidos.string'   => 'El campo apellido debe contener texto.',
+            'apellidos.min'      => 'El campo apellido debe contener al menos 2 caracteres.',
+            'apellidos.max'      => 'El campo apellido no debe superar los 40 caracteres.',
 
             // NUMERO DOCUMENTO
             'numero_documento.required' => 'Por favor, ingrese su número de documento.',
@@ -93,6 +95,7 @@ class ApiRegisterRequest extends FormRequest
             // EMAIL
             'email.required' => 'Por favor, ingrese su correo electrónico.',
             'email.email'    => 'Por favor ingrese un correo electrónico válido.',
+            'email.min'      => 'El correo electrónico debe contener al menos 5 caracteres.',
             'email.max'      => 'El correo electrónico no debe superar los 255 caracteres.',
             'email.unique'   => 'Ya existe un usuario registrado con este correo electrónico.',
 
