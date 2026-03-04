@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Resources\Country\CountryUserResource;
+use App\Http\Resources\Line\LineResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -44,9 +46,11 @@ class UserRankResource extends JsonResource
             'puntos'        => $this->puntos,
             'posicion'      => $this->posicion,
             'color'         => $color,
-            'pais'          => $this->country->name,
-            // 'partidos'      => $this->partidos,
+            'pais'          => new CountryUserResource($this->country),
+            'linea'         => new LineResource($this->line),
+
             'fechaRegistro' => $fecha_registro->format('Y-m-d H:i:s'),
+            // 'partidos'      => $this->partidos,
         ];
     }
 }

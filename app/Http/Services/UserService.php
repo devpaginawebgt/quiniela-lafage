@@ -26,7 +26,7 @@ class UserService {
 
     public function getLoginDependiente(ApiLoginRequest $request)
     {
-        return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'puntos', 'status_user', 'created_at')
+        return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'line_id', 'puntos', 'status_user', 'created_at')
             ->where('numero_documento', $request->input('identity'))
             ->where('user_type_id', $request->input('user_type_id'))
             ->first();
@@ -34,7 +34,7 @@ class UserService {
 
     public function getLoginDoctor(ApiLoginRequest $request)
     {
-        return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'puntos', 'status_user', 'created_at')
+        return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'line_id', 'puntos', 'status_user', 'created_at')
             ->where('colegiado', $request->input('identity'))
             ->where('user_type_id', $request->input('user_type_id'))
             ->first();
@@ -56,7 +56,7 @@ class UserService {
 
     public function getUserRank($user)
     {
-        $rankingQuery = User::select('id', 'nombres', 'apellidos', 'pais_id', 'puntos', 'created_at')
+        $rankingQuery = User::select('id', 'nombres', 'apellidos', 'pais_id', 'line_id', 'puntos', 'created_at')
             ->selectRaw('RANK() OVER (ORDER BY puntos DESC, nombres ASC) as posicion')
             ->where('line_id', $user->line_id)
             ->has('predictions')
