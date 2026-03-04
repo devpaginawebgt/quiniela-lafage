@@ -20,6 +20,11 @@ class Banner extends Model
         return [ 'is_active' => 'boolean' ];
     }
 
+    public function module(): BelongsTo
+    {
+        return $this->belongsTo(Module::class, 'module_id');
+    }
+
     public function line(): BelongsTo
     {
         return $this->belongsTo(Line::class, 'line_id');

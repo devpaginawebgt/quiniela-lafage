@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             // CompanySeeder::class,
             // BranchSeeder::class,
+            ModuleSeeder::class,
             LineSeeder::class,
 
             BannerSeeder::class,

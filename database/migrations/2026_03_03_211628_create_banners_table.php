@@ -16,8 +16,13 @@ return new class extends Migration
             
             $table->string('name');
             $table->string('url');
-            $table->integer('module_id');
-            $table->boolean('is_active')->default(true);
+
+            $table->unsignedBigInteger('module_id');
+            $table->foreign('module_id')
+                ->references('id')
+                ->on('modules')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
 
             $table->unsignedBigInteger('line_id');
             $table->foreign('line_id')
@@ -26,6 +31,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
