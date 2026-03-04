@@ -25,7 +25,7 @@ class ApiRegisterRequest extends FormRequest
         return [
             'nombres'          => ['required', 'string', 'max:60'],
             'apellidos'        => ['required', 'string', 'max:60'],
-            'numero_documento' => ['required', 'integer', 'digits:13', 'unique:users,numero_documento'],
+            'numero_documento' => ['required', 'integer', 'digits_between:6,13', 'unique:users,numero_documento'],
             'email'            => ['required', 'email', 'max:255', 'unique:users'],
             'pais_id'          => ['required', 'integer', 'exists:countries,id'],
             'line_id'          => ['required', 'integer', 'exists:lines,id'],
@@ -38,7 +38,8 @@ class ApiRegisterRequest extends FormRequest
                 'required_if:user_type_id,2',
                 'prohibited_unless:user_type_id,2',
                 'string',
-                'max:10',
+                'min:2',
+                'max:20',
                 'unique:users'
             ],
 
@@ -64,10 +65,10 @@ class ApiRegisterRequest extends FormRequest
             'apellidos.max'      => 'El campo apellidos no debe superar los 60 caracteres.',
 
             // NUMERO DOCUMENTO
-            'numero_documento.required' => 'Por favor, ingrese su Número de Documento.',
-            'numero_documento.integer'  => 'El campo número de documento solo debe contener números.',
-            'numero_documento.digits'   => 'El número de documento debe contener 13 dígitos.',
-            'numero_documento.unique'   => 'Ya existe un usuario registrado con este Número de Documento.',
+            'numero_documento.required'       => 'Por favor, ingrese su Número de Documento.',
+            'numero_documento.integer'        => 'El campo número de documento solo debe contener números.',
+            'numero_documento.digits_between' => 'El número de documento debe tener entre 6 y 13 dígitos.',
+            'numero_documento.unique'         => 'Ya existe un usuario registrado con este Número de Documento.',
 
             // EMAIL
             'email.required' => 'Por favor, ingrese su correo electrónico.',
@@ -90,11 +91,12 @@ class ApiRegisterRequest extends FormRequest
             'user_type_id.exists'   => 'No se encontró el tipo de usuario.',
 
             // COLEGIADO
-            'colegiado.required_if' => 'Por favor, ingrese su número de colegiado.',
+            'colegiado.required_if'       => 'Por favor, ingrese su número de colegiado.',
             'colegiado.prohibited_unless' => 'El número de colegiado solo aplica para usuarios tipo doctor.',
-            'colegiado.string' => 'Ingrese un número de colegiado válido.',
-            'colegiado.max' => 'El número de colegiado no puede tener más de 10 caracteres.',
-            'colegiado.unique' => 'Ya existe un usuario registrado con este número de colegiado.',
+            'colegiado.string'            => 'El número de colegiado debe ser un texto válido.',
+            'colegiado.min'               => 'El número de colegiado debe tener al menos 2 caracteres.',
+            'colegiado.max'               => 'El número de colegiado no puede tener más de 20 caracteres.',
+            'colegiado.unique'            => 'Ya existe un usuario registrado con este número de colegiado.',
 
 
             // TELEFONO
