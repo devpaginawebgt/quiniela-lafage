@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             // CompanySeeder::class,
             // BranchSeeder::class,
             LineSeeder::class,
+
+            BannerSeeder::class,
+            BrandSeeder::class,
+
             UserTypeSeeder::class,
             UserSeeder::class,
             GrupoSeeder::class,

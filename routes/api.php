@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ApiAuthController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EstadioController;
@@ -60,6 +61,10 @@ Route::middleware(['auth:sanctum'])->group(function() {
 
     Route::controller(UserPushTokenController::class)->group(function() {
         Route::post('users/push-tokens', 'store');
+    });
+
+    Route::controller(BannerController::class)->prefix('banners')->group(function() {
+        Route::get('{module}', 'index');
     });
 
     Route::controller(ApiAuthController::class)->group(function() {
