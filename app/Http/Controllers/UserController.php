@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Line\LineRankingResource;
 use App\Http\Resources\User\UserRankingResource;
 use App\Http\Resources\User\UserRankResource;
 use App\Http\Resources\User\UserResource;
+use App\Http\Services\LineService;
 use App\Http\Services\UserService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -16,6 +18,7 @@ class UserController extends Controller
 
     public function __construct(
         private readonly UserService $userService,
+        private readonly LineService $lineService,
     ) {}
 
     // API responses
@@ -65,11 +68,19 @@ class UserController extends Controller
 
         $line_id = (int) $user->line_id;
 
-        $participantes = $this->userService->getRanking($line_id);
+        $line = $this->lineService->getLine($line_id);
 
-        $participantes = UserRankingResource::collection($participantes);
+        if (empty($line)) {
 
-        return $this->successResponse($participantes);
+            $this->errorResponse('Ocurrió un error al identificar la línea del usuario', 500);
+
+        }
+
+        $line->participantes = $this->userService->getRanking($line_id);
+
+        $line = new LineRankingResource($line);
+
+        return $this->successResponse($line);
 
     }
 

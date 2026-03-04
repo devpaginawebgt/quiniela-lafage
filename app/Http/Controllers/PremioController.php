@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Line\LinePremiosResource;
 use App\Http\Resources\Premio\PremioResource;
+use App\Http\Services\LineService;
 use App\Http\Services\PremioService;
 use App\Http\Services\UserService;
 use App\Traits\ApiResponse;
@@ -17,6 +19,7 @@ class PremioController extends Controller
     public function __construct(
         private readonly UserService $userService,
         private readonly PremioService $premioService,
+        private readonly LineService $lineService,
     ) {}
 
     // API Responses
@@ -26,11 +29,21 @@ class PremioController extends Controller
 
         $user = $request->user();
 
-        $premios = $this->premioService->getPremios($user->line_id);
+        $line_id = (int) $user->line_id;
 
-        $premios = PremioResource::collection($premios);
+        $line = $this->lineService->getLine($line_id);
 
-        return $this->successResponse($premios);
+        if (empty($line)) {
+
+            $this->errorResponse('Ocurrió un error al identificar la línea del usuario', 500);
+
+        }
+
+        $line->premios = $this->premioService->getPremios($line_id);
+
+        $line = new LinePremiosResource($line);
+
+        return $this->successResponse($line);
 
     }
 
