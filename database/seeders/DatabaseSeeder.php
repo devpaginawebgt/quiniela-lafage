@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             LineSeeder::class,
 
             BannerSeeder::class,
-            BrandSeeder::class,
+            // BrandSeeder::class,
 
             UserTypeSeeder::class,
             UserSeeder::class,
