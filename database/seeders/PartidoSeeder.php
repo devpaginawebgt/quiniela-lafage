@@ -38,7 +38,6 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
-                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 11, 22, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')

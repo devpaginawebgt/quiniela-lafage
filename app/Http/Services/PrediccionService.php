@@ -29,7 +29,8 @@ class PrediccionService {
                     ->whereNot('estado', 1);
             })
             ->with([
-                'partido:id,fase,jornada_id,fecha_partido,jugado,estado',
+                'partido:id,fase,jornada_id,fecha_partido,jugado,estado,brand_id',
+                'partido.brand',
                 'equipoUno:id,nombre,imagen,grupo',
                 'equipoDos:id,nombre,imagen,grupo',
                 'prediccion' => function ($query) use ($user_id) {
@@ -54,7 +55,8 @@ class PrediccionService {
                 $query->whereIn('id', $id_partidos);
             })
             ->with([
-                'partido:id,fase,jornada_id,fecha_partido,jugado,estado',
+                'partido:id,fase,jornada_id,fecha_partido,jugado,estado,brand_id',
+                'partido.brand',
                 'equipoUno:id,nombre,imagen,grupo',
                 'equipoDos:id,nombre,imagen,grupo',
                 'prediccion' => function ($query) use ($user_id) {
@@ -228,7 +230,8 @@ class PrediccionService {
                     ->where('estado', 1);
             })
             ->with([
-                'partido:id,fase,jornada_id,fecha_partido,jugado,estado',
+                'partido:id,fase,jornada_id,fecha_partido,jugado,estado,brand_id',
+                'partido.brand',
                 'equipoUno:id,nombre,imagen,grupo',
                 'equipoDos:id,nombre,imagen,grupo',
                 'resultado:id,partido_id,goles_equipo_1,goles_equipo_2',
@@ -324,7 +327,8 @@ class PrediccionService {
                 $query->where('jornada_id', $id_jornada);
             })
             ->with([
-                'partido:id,fase,jornada_id,fecha_partido,jugado,estado',
+                'partido:id,fase,jornada_id,fecha_partido,jugado,estado,brand_id',
+                'partido.brand',
                 'equipoUno:id,nombre,imagen,grupo',
                 'equipoDos:id,nombre,imagen,grupo',
                 'resultado:id,partido_id,goles_equipo_1,goles_equipo_2',

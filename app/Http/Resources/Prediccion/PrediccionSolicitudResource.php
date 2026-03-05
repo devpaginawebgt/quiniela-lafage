@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Prediccion;
 
+use App\Http\Resources\Brand\BrandResource;
 use App\Http\Resources\Equipo\EquipoPartidoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -45,6 +46,7 @@ class PrediccionSolicitudResource extends JsonResource
 
             'equipoUno' => new EquipoPartidoResource($this->equipoUno),
             'equipoDos' => new EquipoPartidoResource($this->equipoDos),
+            'marca'     => !empty($this->partido->brand) ? new BrandResource($this->partido->brand) : null,
 
             'prediccionEquipoUno' => $this->prediccion?->goles_equipo_1,
             'prediccionEquipoDos' => $this->prediccion?->goles_equipo_2,
