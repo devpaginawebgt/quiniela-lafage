@@ -29,18 +29,20 @@
         <script src="{{asset('js/app.js')}}"></script> --}}
     </head>
     <body
-        class="font-sans antialiased bg-[--complementary-primary-color] bg-auth bg-fixed text-[--dark-color] overflow-x-hidden"
-        style="background-image: url({{ asset('images/portadas/futbol-banner.jpg') }});"
+        class="font-sans antialiased bg-[--light-color] bg-auth bg-fixed text-[--dark-color] overflow-x-hidden"
+        style="background-image: url({{ asset('images/portadas/estadio-banner.png') }});"
     >
         <div class="min-h-screen">
-            @include('layouts.navigation')
+            @include('layouts.navigation')            
 
             <!-- Page Heading -->
-            <header class="shadow bg-[--complementary-primary-color]">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+            @if (isset($header) && !empty($header))
+                <header class="shadow bg-[--secondary-color]">
+                    <div class="p-6 text-center text-white">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
 
             <!-- Page Content -->
             <main>

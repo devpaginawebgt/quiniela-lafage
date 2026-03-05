@@ -90,9 +90,9 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        $id_pais = (int) $user->pais_id;
+        $line_id = (int) $user->line_id;
 
-        $participantes = $this->userService->getRanking($id_pais);
+        $participantes = $this->userService->getRanking($line_id);
 
         return view('modulos.tabla-resultados', [
             'participantes' => $participantes

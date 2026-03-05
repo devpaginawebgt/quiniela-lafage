@@ -1,21 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Mundial 2026 México | Estados Unidos | Canadá') }}
+            {{ __('Quiniela Mundial Lafage | 2026') }}
         </h2>
     </x-slot>
 
     <div class="max-w-screen-2xl my-6 mx-auto sm:px-6 lg:px-8" id="selecciones-container">
         <div class="overflow-hidden shadow-sm sm:rounded-lg">
             <div class="px-6 pb-6 mb-8">
-                <h5 class="text-3xl text-center font-bold my-8">Grupos conformados</h5>
+                <h5 class="text-xl text-center font-bold my-8 py-4 px-12 uppercase rounded-lg bg-[--primary-color] w-max mx-auto text-[--light-color]">
+                    Grupos conformados
+                </h5>
                 <div class="flex flex-col">
                     <div class="xl:w-1/6 w-1/2 mx-auto mb-4">
-                        <label for="grupos" class="block mb-2 text-sm font-medium text-[--light-color] text-center">Seleccione: </label>
+                        <label for="grupos" class="block mb-2 text-sm font-medium text-center">Seleccione: </label>
                         <div class="flex items-center justify-center">
                             <select
                                 id="grupos"
-                                class="bg-[--complementary-primary-color] border border-[--complementary-light-color] text-[--light-color] font-semibold text-center cursor-pointer rounded-lg block w-1/2 p-2.5"
+                                class="bg-[--complementary-primary-color] border border-[--complementary-light-color] font-semibold text-center cursor-pointer rounded-lg block w-1/2 p-2.5"
                                 {{-- onchange="verEquiposGrupo(this)" --}}
                             >
                                 @foreach($grupos as $grupo)
@@ -32,7 +34,7 @@
 
                     <div class="w-full lg:w-3/4 overflow-x-auto relative shadow-md sm:rounded-lg mx-auto mb-12">
                         <table class="xl:w-full text-sm text-left">
-                            <thead class="text-xs bg-[--dark-color] uppercase">
+                            <thead class="text-xs bg-[--dark-color] uppercase text-[--light-color]">
                                 <tr>
                                     <th scope="col" class="py-3 px-6">Equipo</th>
                                     <th scope="col" class="py-3 px-6">PJ</th>
@@ -47,7 +49,7 @@
                             <tbody id="body-equipos-grupo">
                                 @if (!empty($equipos_grupo))
                                     @foreach($equipos_grupo as $equipo)
-                                        <tr class="bg-[--complementary-primary-color] border-b border-zinc-400 text-[--light-color]">
+                                        <tr class="bg-[--complementary-primary-color] border-b border-zinc-400">
                                             <th scope="row" class="py-4 px-6 font-medium whitespace-nowrap flex items-center justify-between w-full">
                                                 <img
                                                     src="{{ $equipo->imagen }}"
@@ -85,7 +87,7 @@
                         </table>
                     </div>
 
-                    <p class="text-xl font-semibold text-center mb-4">
+                    <p class="text-xl font-semibold text-center mb-4 px-8 py-4 rounded-lg bg-[--complementary-primary-color] w-max mx-auto">
                         Jornada 1
                     </p>
 
@@ -145,7 +147,7 @@
                         </ul>
                     </div>
 
-                    <p class="text-xl font-semibold text-center mb-4">
+                    <p class="text-xl font-semibold text-center mb-4 px-8 py-4 rounded-lg bg-[--complementary-primary-color] w-max mx-auto">
                         Jornada 2
                     </p>
 
@@ -205,7 +207,7 @@
                         </ul>   
                     </div>
 
-                    <p class="text-xl font-semibold text-center mb-4">
+                    <p class="text-xl font-semibold text-center mb-4 px-8 py-4 rounded-lg bg-[--complementary-primary-color] w-max mx-auto">
                         Jornada 3
                     </p>
 

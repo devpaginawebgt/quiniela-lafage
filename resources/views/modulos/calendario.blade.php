@@ -1,21 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Mundial 2026 México | Estados Unidos | Canadá') }}
+        <h2 class="font-semibold text-xl leading-tight">
+            {{ __('Quiniela Mundial Lafage | 2026') }}
         </h2>
     </x-slot>
 
     <div class="max-w-screen-2xl my-6 mx-auto sm:px-6 lg:px-8" id="selecciones-container">
         <div class="overflow-hidden shadow-sm sm:rounded-lg">
             <div class="px-6 pb-6 ">
-                <h5 class="text-3xl text-center font-bold my-8">Calendario de partidos</h5>
+                <h5 class="text-xl text-center font-bold my-8 py-4 px-12 uppercase rounded-lg bg-[--primary-color] w-max mx-auto text-[--light-color]">
+                    Calendario de partidos
+                </h5>
                 <div class="flex flex-col">
                     <div class="w-36 mx-auto mb-4">
                         <label for="grupos"
                             class="block mb-2 text-sm font-medium text-center">Jornada: </label>
                         <select
                             id="jornadas"
-                            class="bg-[--complementary-primary-color] border border-[--complementary-light-color] text-[--light-color] font-semibold text-center cursor-pointer rounded-lg block p-2.5 w-full"
+                            class="bg-[--complementary-primary-color] border border-[--complementary-light-color] font-semibold text-center cursor-pointer rounded-lg block p-2.5 w-full"
                             {{-- onchange="verPartidosJornada(this)" --}}
                         >
                             @foreach($jornadas as $jornada)

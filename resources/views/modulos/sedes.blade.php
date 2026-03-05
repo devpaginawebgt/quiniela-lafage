@@ -1,14 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Mundial 2026 México | Estados Unidos | Canadá') }}
+            {{ __('Quiniela Mundial Lafage | 2026') }}
         </h2>
     </x-slot>
 
     <div class="max-w-screen-2xl my-6 mx-auto sm:px-6 lg:px-8" id="selecciones-container">
         <div class="overflow-hidden shadow-sm sm:rounded-lg">
             <div class="px-6 pb-6 ">
-                <h5 class="text-3xl text-center font-bold my-8">Estadios del Mundial 2026</h5>
+                <h5 class="text-xl text-center font-bold my-8 py-4 px-12 uppercase rounded-lg bg-[--primary-color] w-max mx-auto text-[--light-color]">
+                    Estadios del Mundial 2026
+                </h5>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-start gap-8 transition-all">
 
                     @foreach($estadios as $estadio)

@@ -1,14 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Mundial 2026 México | Estados Unidos | Canadá') }}
+            {{ __('Quiniela Mundial Lafage | 2026') }}
         </h2>
     </x-slot>
 
     <div class="max-w-screen-2xl my-6 mx-auto px-0 sm:px-6 lg:px-8" id="selecciones-container">
         <div class="overflow-hidden shadow-sm sm:rounded-lg pb-11 md:px-10">
             <div class="mt-4 mb-8">
-                <h5 class="text-3xl text-center font-bold">Premios ganadores</h5>
+                <h5 class="text-xl text-center font-bold py-4 px-12 uppercase rounded-lg bg-[--primary-color] w-max mx-auto text-[--light-color]">
+                    Premios ganadores
+                </h5>
                 {{-- <p class="text-xl text-center font-semibold">(Disponible proximamente)</p> --}}
             </div>
 
@@ -67,7 +69,7 @@
                                 <td class="py-4 px-6">
                                     {{$premio->nombre}}
                                 </td>
-                                <td class="py-4 px-6">
+                                <td class="py-4 px-6 text-[--complementary-dark-color]">
                                     {{$premio->descripcion}}
                                 </td>
                                 <td class="py-4 px-6">

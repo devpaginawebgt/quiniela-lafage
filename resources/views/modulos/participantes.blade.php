@@ -40,7 +40,9 @@
         <div class="max-w-screen-2xl my-6 mx-auto sm:px-6 lg:px-8" id="selecciones-container">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg xl:px-10 px-2 pb-11">
                 <div class="px-6 pb-6 bg-white border-b border-gray-200 flex items-center justify-center">
-                    <h5 class="text-3xl text-center font-bold my-8">Participantes Registrados</h5>
+                    <h5 class="text-xl text-center font-bold my-8 py-4 px-12 uppercase rounded-lg bg-[--primary-color] w-max mx-auto text-[--light-color]">
+                        Participantes Registrados
+                    </h5>
                 </div>
 
                 <div class="overflow-x-auto relative shadow-md sm:rounded-lg mx-auto p-2">

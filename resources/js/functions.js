@@ -118,7 +118,7 @@ const pintarEquiposGrupo = (equipos) => {
         const gc = equipo.stats.find(stat => stat.name === 'GC');
 
         return `
-            <tr class="bg-[--complementary-primary-color] border-b border-zinc-400 text-[--light-color]">
+            <tr class="bg-[--complementary-primary-color] border-b border-zinc-400">
                 <th scope="row" class="py-4 px-6 font-medium whitespace-nowrap flex items-center justify-between w-full">
                     <img src="${equipo.image}" alt="SELECCION" class="h-10 w-14 object-cover mx-4 rounded-md shadow-md">
                     ${equipo.name}

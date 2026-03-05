@@ -52,16 +52,9 @@ class PremioController extends Controller
     public function verTablaPremios()
     {
         
-        $id_pais = Auth::user()->pais_id;
+        $line_id = Auth::user()->line_id;
 
-        $premios = DB::select(
-            "SELECT 
-                * 
-            FROM 
-                premios 
-            WHERE 
-                pais_id = $id_pais"
-        );
+        $premios = $this->premioService->getPremios($line_id);
 
         return view('modulos.tabla-premios', [
             'premios' => $premios

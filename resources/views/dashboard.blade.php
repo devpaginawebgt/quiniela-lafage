@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Mundial 2026 México | Estados Unidos | Canadá') }}
-        </h2>
-    </x-slot>
-
     <div class="">
         <div class="flex justify-center">
             <img
@@ -13,14 +7,26 @@
                 style="max-width: 100rem"
             >
         </div>
+
+        <div class="py-8 px-4 bg-[--secondary-color]">
+            <h2 class="font-semibold text-3xl  text-[--light-color] leading-tight text-center">
+                {{ __('México | Estados Unidos | Canadá') }}
+            </h2>    
+        </div>
+
+
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 bg-[--complementary-primary-color]">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 border-b border-gray-200 ">
-                    <p class="text-center text-2xl font-bold">
-                        Bienvenido {{ Auth::user()->nombres . " " . Auth::user()->apellidos}}
+                <div class="pt-16 border-b border-gray-200 ">
+                    <p class="text-center text-3xl font-bold uppercase">
+                        @php
+                            $user = Auth::user()
+                        @endphp
+
+                        &#9917; Bienvenido(a) al Mundial Lafage &#9917;
                     </p>
-                    <p class="text-center text-4xl mt-2">
-                         Estamos listos para el Mundial 2026
+                    <p class="text-center text-2xl mt-4 uppercase mb-4">
+                         {{ $user->nombres . " " . $user->apellidos}}
                     </p>
                 </div>
                 <div class="flex w-full py-8" style="justify-content: center;align-items: center;">

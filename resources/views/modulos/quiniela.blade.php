@@ -4,7 +4,7 @@
 
         <h2 class="font-semibold text-xl text-white leading-tight">
 
-            {{ __('Mundial 2026 México | Estados Unidos | Canadá') }}
+            {{ __('Quiniela Mundial Lafage | 2026') }}
 
         </h2>
 
@@ -18,19 +18,21 @@
 
             <div class="lg:px-6 pb-6">
 
-                <h5 class="text-2xl text-center font-bold mt-4">Pronostica los próximos partidos</h5>
+                <h5 class="text-xl text-center font-bold mt-4 py-4 px-12 uppercase rounded-lg bg-[--primary-color] w-max mx-auto text-[--light-color]">
+                    Pronostica los próximos partidos
+                </h5>
                 
                 <div class="w-44 mx-auto mb-4">
 
                     <form action="{{ route('web.ver-quiniela') }}" method="GET" id="verPartidosQuinielaSelect">
 
-                        <label for="grupos" class="block mb-2 text-xl font-bold text-center text-[--complementary-light-color] mt-4">Jornada:
+                        <label for="grupos" class="block mb-2 text-xl font-bold text-center mt-4">Jornada:
 
                         </label>
 
                         <select
                             id="quiniela"
-                            class="bg-[--complementary-primary-color] border border-[--light-color] text-[--light-color] text-lg text-center font-bold hover:border-[--secondary-color] hover:cursor-pointer rounded-lg focus:ring-[--secondary-color] focus:border-[--secondary-color] block w-full p-2.5"
+                            class="bg-[--complementary-primary-color] border border-[--light-color] text-lg text-center font-bold hover:border-[--secondary-color] hover:cursor-pointer rounded-lg focus:ring-[--secondary-color] focus:border-[--secondary-color] block w-full p-2.5"
                             {{-- onchange="verPartidosJornadaQuiniela(this)" --}}
                         >
 
@@ -137,7 +139,7 @@
                                     @endphp
 
                                     @if($pronosticado)
-                                        <div class="absolute rounded-full py-1 px-4 top-4 -right-4 bg-[--secondary-color] text-sm text-[--dark-color] font-semibold">
+                                        <div class="absolute rounded-full py-1 px-4 top-4 -right-4 bg-[--secondary-color] text-sm text-[--light-color] font-semibold">
                                             Pronosticado
                                         </div>
                                     @endif
@@ -153,7 +155,7 @@
                                             @endif
                                         </p>
 
-                                        <p class="text-center flex gap-2 text-[--complementary-light-color]">
+                                        <p class="text-center flex gap-2 text-[--complementary-dark-color]">
 
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14q-.425 0-.712-.288T11 13t.288-.712T12 12t.713.288T13 13t-.288.713T12 14m-4.712-.288Q7 13.426 7 13t.288-.712T8 12t.713.288T9 13t-.288.713T8 14t-.712-.288M16 14q-.425 0-.712-.288T15 13t.288-.712T16 12t.713.288T17 13t-.288.713T16 14m-4 4q-.425 0-.712-.288T11 17t.288-.712T12 16t.713.288T13 17t-.288.713T12 18m-4.712-.288Q7 17.426 7 17t.288-.712T8 16t.713.288T9 17t-.288.713T8 18t-.712-.288M16 18q-.425 0-.712-.288T15 17t.288-.712T16 16t.713.288T17 17t-.288.713T16 18M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5z"/></svg>
@@ -178,7 +180,7 @@
                                         </p>
                                     </div>
 
-                                    <div class="flex justify-between items-center {{ $partido->estado == 0 ? 'partido-modulo-pronosticos' : '' }} partido-{{ $partido->id }} border-y border-[--complementary-light-color] py-8 my-8">
+                                    <div class="flex justify-between items-center {{ $partido->estado == 0 ? 'partido-modulo-pronosticos' : '' }} partido-{{ $partido->id }} border-y border-[--complementary-dark-color] py-8 my-8">
 
                                         <div class="flex flex-col items-center w-full max-w-60 gap-4">
 
@@ -239,7 +241,7 @@
                                             </div>
                                         @endif
                                         
-                                        <p class="text-center text-sm text-[--complementary-light-color] mb-3">
+                                        <p class="text-center text-sm text-[--complementary-dark-color] mb-3">
                                             Tu pronóstico
                                         </p>
 
@@ -268,7 +270,7 @@
                                                                 min="0"
                                                                 max="25"
                                                                 value="{{ $prediccion_equipo_uno }}"
-                                                                class="marcador-equipo-1 marcador-equipo border border-[--light-color] text-[--light-color] bg-transparent text-center rounded-md hide-input-arrows px-0 py-1"
+                                                                class="marcador-equipo-1 marcador-equipo border border-[--dark-color] text-[--dark-color] bg-transparent text-center rounded-md hide-input-arrows px-0 py-1"
                                                             >
         
                                                         </div>
@@ -282,13 +284,13 @@
                                                     </div>
                                                 @elseif ($partido->estado === 2)
                                                     <div class="flex flex-col justify-items-center">
-                                                        <span class="text-2xl text-[--light-color]">
+                                                        <span class="text-2xl text-[--dark-color]">
                                                             {{ $prediccion_equipo_uno }}
                                                         </span>
                                                     </div>
                                                 @elseif ($partido->estado === 1)
                                                     <div class="flex flex-col justify-items-center">
-                                                        <span class="text-xl text-[--complementary-light-color]">
+                                                        <span class="text-xl text-[--complementary-dark-color]">
                                                             {{ $prediccion_equipo_uno }}
                                                         </span>
                                                     </div>
@@ -301,7 +303,7 @@
                                                         -
                                                     </span>
                                                 @else
-                                                    <span class="text-lg text-zinc-400">
+                                                    <span class="text-lg text-zinc-600">
                                                         No has ingresado una predicción
                                                     </span>
                                                 @endif
@@ -324,7 +326,7 @@
                                                                 min="0" 
                                                                 max="10"
                                                                 value="{{ $prediccion_equipo_dos }}"
-                                                                class="marcador-equipo-1 marcador-equipo border border-[--light-color] text-[--light-color] bg-transparent text-center rounded-md hide-input-arrows px-0 py-1">
+                                                                class="marcador-equipo-1 marcador-equipo border border-[--dark-color] text-[--dark-color] bg-transparent text-center rounded-md hide-input-arrows px-0 py-1">
         
                                                         </div>
         
@@ -337,13 +339,13 @@
                                                     </div>
                                                 @elseif ($partido->estado === 2)
                                                     <div class="flex flex-col justify-items-center">
-                                                        <span class="text-2xl text-[--light-color]">
+                                                        <span class="text-2xl text-[--dark-color]">
                                                             {{ $prediccion_equipo_dos }}
                                                         </span>
                                                     </div>
                                                 @elseif ($partido->estado === 1)
                                                     <div class="flex flex-col justify-items-center">
-                                                        <span class="text-xl text-[--complementary-light-color]">
+                                                        <span class="text-xl text-[--complementary-dark-color]">
                                                             {{ $prediccion_equipo_dos }}
                                                         </span>
                                                     </div>

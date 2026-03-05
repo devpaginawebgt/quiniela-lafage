@@ -4,7 +4,7 @@
 
         <h2 class="font-semibold text-xl text-white leading-tight">
 
-            {{ __('Mundial 2026 México | Estados Unidos | Canadá') }}
+            {{ __('Quiniela Mundial Lafage | 2026') }}
 
         </h2>
 
@@ -14,11 +14,13 @@
 
     <div class="max-w-screen-2xl my-6 mx-auto sm:px-6 lg:px-8" id="selecciones-container">
 
-        <div class="overflow-hidden shadow-sm sm:rounded-lg xl:px-10 px-2 pb-11">
+        <div class="overflow-hidden xl:px-10 px-2 pb-11">
 
             <div class="px-6 pb-6 flex items-center justify-center">
 
-                <h5 class="text-3xl text-center font-bold mt-4 mb-4">Ranking de participantes</h5>
+                <h5 class="text-xl text-center font-bold mt-4 mb-4 py-4 px-12 uppercase rounded-lg bg-[--primary-color] w-max mx-auto text-[--light-color]">
+                    Ranking de participantes
+                </h5>
 
                 <svg class="animate-spin spinner-load" viewBox="0 0 24 24"></svg>
 
@@ -26,11 +28,11 @@
 
             
 
-            <div class="overflow-x-auto relative shadow-md sm:rounded-lg mx-auto">
+            <div class="overflow-x-auto relative mx-auto">
 
-                <table class="w-full text-sm text-left bg-[--complementary-primary-color]" id="ranking-table">
+                <table class="w-full text-sm text-left bg-[--complementary-light-color] rounded-lg" id="ranking-table">
 
-                    <thead class="text-xs uppercase bg-[--dark-color]">
+                    <thead class="text-xs uppercase bg-[--dark-color] text-[--light-color]">
 
                         <tr>
 
@@ -61,11 +63,11 @@
                                 Correo
 
                             </th>
-                            <th scope="col" class="py-3 px-6">
+                            {{-- <th scope="col" class="py-3 px-6">
 
                                 Teléfono
 
-                            </th>
+                            </th> --}}
                             
                             <th scope="col" class="py-3 px-6">
 
@@ -84,7 +86,7 @@
                     </thead>
 
                     <tbody id="body-participantes-quiniela">
-                        @if(!empty($participantes))
+                        @if(!$participantes->isEmpty())
 
                             @foreach($participantes as $participante)
 
@@ -109,7 +111,7 @@
                                     }
                                 @endphp
 
-                                <tr class="border-b border-zinc-400">
+                                <tr class="border-b border-zinc-400 bg-[--complementary-primary-color]">
 
                                     <th scope="row" class="py-4 px-6 font-bold text-lg whitespace-nowrap">
                                         <span style="{{ $positionStyle }}" class="flex gap-2 items-center">
@@ -120,7 +122,7 @@
                                     <td class="py-4 px-6">{{ $participante->apellidos }}</td>
                                     <td class="py-4 px-6">{{ $participante->numero_documento }}</td>
                                     <td class="py-4 px-6">{{ $participante->email }}</td>
-                                    <td class="py-4 px-6">{{ $participante->telefono }}</td>
+                                    {{-- <td class="py-4 px-6">{{ $participante->telefono }}</td> --}}
                                     <td class="py-4 px-6">{{ $participante->puntos }}</td>
                                 </tr>
                             
@@ -129,7 +131,7 @@
                         @else
 
                             <tr>
-                                <td colspan="8" class="py-4 text-center">
+                                <td colspan="8" class="py-4 text-center text-[--dark-color]">
                                     No hay participantes para mostrar
                                 </td>
                             </tr>
