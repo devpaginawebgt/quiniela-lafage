@@ -47,7 +47,7 @@ class ApiLoginRequest extends FormRequest
             'identity.max'      => 'El número de documento o colegiado debe contener como máximo 20 caracteres.',
 
             'password.required' => 'Por favor llene el campo contraseña.',
-            'password.string' => 'El campo contraseña debe contener texto.',
+            'password.string'   => 'El campo contraseña debe contener texto.',
         ];
         
     }

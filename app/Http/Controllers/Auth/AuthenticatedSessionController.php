@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Services\UserService;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -15,6 +16,10 @@ use Illuminate\Auth\Events\Lockout;
 
 class AuthenticatedSessionController extends Controller
 {
+    public function __construct(
+        private readonly UserService $userService
+    ) {}
+
     /**
      * Display the login view.
      *
@@ -23,6 +28,11 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         return view('auth.login');
+    }
+
+    public function createDoctor()
+    {
+        return view('auth.login-doctor');
     }
 
     /**
@@ -49,19 +59,43 @@ class AuthenticatedSessionController extends Controller
      */
     public function authenticate(LoginRequest $request)
     {
-        $this->ensureIsNotRateLimited($request);
+        $this->ensureIsNotRateLimited($request);        
 
         $data = $request->validated();
+        
+        if ((int)$data['user_type_id'] === 1) {
 
-        $user = User::where('numero_documento', $data['identity'])->first();
+            $user = $this->userService->getLoginDependiente($request);
 
-        if (empty($user)) {
-            throw ValidationException::withMessages([
-                'identity' => 'El número de documento ingresado no está registrado en el sistema.',
-            ]);
+        } elseif ((int)$data['user_type_id'] === 2) {
+
+            $user = $this->userService->getLoginDoctor($request);
+
         }
 
-        $credentials = ['email' => $user->email, 'password' => $request->input('password')];
+        if (empty($user)) {
+
+            $error_message = '';
+
+            switch($data['user_type_id']) {
+                case 1:
+                    $error_message = 'No se encontró un dependiente registrado con este número de documento.';
+                    break;
+                case 2:
+                    $error_message = 'No se encontró un doctor registrado con este número de colegiado.';
+                    break;
+                default:
+                    $error_message = 'No se encontró un usuario con este número de documento o colegiado.';
+                    break;
+            }
+
+            throw ValidationException::withMessages([
+                'identity' => $error_message,
+            ]);
+
+        }
+
+        $credentials = ['email' => $user->email, 'password' => $data['password']];
 
         if (! Auth::attempt($credentials)) {
             RateLimiter::hit($this->throttleKey($request));

@@ -10,18 +10,18 @@
 
         <ul class="flex justify-center items-center mt-4 mb-6 border rounded-xl overflow-hidden">
             <li class="w-full">
-                <div class="w-full text-center bg-[--complementary-secondary-color] text-[--light-color]">
-                    <div class="px-4 py-2 cursor-default"> 
+                <a href="/ingresa" class="w-full text-center">
+                    <div class="px-4 py-2">
                         Dependiente
                     </div>
-                </div>
+                </a>
             </li>
             <li class="w-full">
-                <a href="/ingresa-doctor" class="w-full text-center">
-                    <div class="px-4 py-2">
+                <div class="w-full text-center bg-[--complementary-secondary-color] text-[--light-color]">
+                    <div class="px-4 py-2 cursor-default"> 
                         Doctor
                     </div>
-                </a>
+                </div>
             </li>
         </ul>
 
@@ -35,14 +35,14 @@
             method="POST"
             action="{{ route('login') }}"
             class="formulario-auth mb-2"
-        >
+        >            
             @csrf
 
-            <input type="hidden" name="user_type_id" value="1">
+            <input type="hidden" name="user_type_id" value="2">
             
             <!-- Email Address -->
             <div>
-                <x-label for="identity" :value="__('Número de documento')" />
+                <x-label for="identity" :value="__('Colegiado')" />
 
                 <x-input
                     id="identity"

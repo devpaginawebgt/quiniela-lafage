@@ -24,7 +24,7 @@ class UserService {
         return User::find($userId);
     }
 
-    public function getLoginDependiente(ApiLoginRequest $request)
+    public function getLoginDependiente($request)
     {
         return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'line_id', 'puntos', 'status_user', 'created_at')
             ->where('numero_documento', $request->input('identity'))
@@ -32,7 +32,7 @@ class UserService {
             ->first();
     }
 
-    public function getLoginDoctor(ApiLoginRequest $request)
+    public function getLoginDoctor($request)
     {
         return User::select('id', 'email', 'password', 'nombres', 'apellidos', 'pais_id', 'numero_documento', 'line_id', 'puntos', 'status_user', 'created_at')
             ->where('colegiado', $request->input('identity'))

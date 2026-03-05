@@ -16,6 +16,8 @@ Route::middleware('guest')->group(function () {
 
     Route::get('ingresa', [AuthenticatedSessionController::class, 'create'])->name('ingresa');
 
+    Route::get('ingresa-doctor', [AuthenticatedSessionController::class, 'createDoctor'])->name('ingresa-doctor');
+
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
     // Register

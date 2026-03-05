@@ -28,15 +28,19 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'identity' => ['required', 'string', 'min:2', 'max:20'],
-            'password' => ['required', 'string'],
+            'user_type_id' => ['required', 'integer', 'exists:user_types,id'],
+            'identity'     => ['required', 'string', 'min:2', 'max:20'],
+            'password'     => ['required', 'string'],
         ];
     }
 
     public function messages()
     {
-        
         return [
+            'user_type_id.required' => 'El tipo de usuario es incorrecto.',
+            'user_type_id.integer'  => 'El tipo de usuario es incorrecto.',
+            'user_type_id.exists'   => 'No se encontró el tipo de usuario.',
+
             'identity.required' => 'Ingrese su número de documento o colegiado.',
             'identity.string'   => 'El número de documento o colegiado no es válido.',
             'identity.min'      => 'El número de documento o colegiado debe contener como mínimo 2 caracteres.',
@@ -44,65 +48,6 @@ class LoginRequest extends FormRequest
 
             'password.required' => 'Por favor llene el campo contraseña.',
             'password.string'   => 'La contraseña debe contener texto.',
-        ];
-        
+        ];   
     }
-
-    /**
-     * Attempt to authenticate the request's credentials.
-     *
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function authenticate()
-    {
-        $this->ensureIsNotRateLimited();
-
-        if (! Auth::attempt($this->only('numero_documento', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'numero_documento' => trans('auth.failed'),
-            ]);
-        }
-
-        RateLimiter::clear($this->throttleKey());
-    }
-
-    /**
-     * Ensure the login request is not rate limited.
-     *
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function ensureIsNotRateLimited()
-    {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
-            return;
-        }
-
-        event(new Lockout($this));
-
-        $seconds = RateLimiter::availableIn($this->throttleKey());
-
-        throw ValidationException::withMessages([
-            'numero_documento' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
-        ]);
-    }
-
-    /**
-     * Get the rate limiting throttle key for the request.
-     *
-     * @return string
-     */
-    public function throttleKey()
-    {
-        return Str::lower($this->input('numero_documento')).'|'.$this->ip();
-    }
-
 }

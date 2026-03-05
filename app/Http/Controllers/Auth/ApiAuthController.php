@@ -27,13 +27,15 @@ class ApiAuthController extends Controller
     {
         $request->ensureIsNotRateLimited($request);
 
+        $data = $request->validated();
+
         $user = null;
 
-        if ($request->input('user_type_id') === 1) {
+        if ($data['user_type_id'] === 1) {
 
             $user = $this->userService->getLoginDependiente($request);
 
-        } elseif ($request->input('user_type_id') === 2) {
+        } elseif ($data['user_type_id'] === 2) {
 
             $user = $this->userService->getLoginDoctor($request);
 
@@ -43,7 +45,7 @@ class ApiAuthController extends Controller
 
             $error_message = '';
 
-            switch($request->input('user_type_id')) {
+            switch($data['user_type_id']) {
                 case 1:
                     $error_message = 'No se encontró un dependiente registrado con este número de documento.';
                     break;
