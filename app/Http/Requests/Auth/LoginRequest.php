@@ -28,7 +28,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email', 'exists:users,email'],
+            'identity' => ['required', 'string', 'min:2', 'max:20'],
             'password' => ['required', 'string'],
         ];
     }
@@ -37,13 +37,13 @@ class LoginRequest extends FormRequest
     {
         
         return [
-            'email.required' => 'Por favor llene el campo correo electrónico.',
-            'email.string' => 'El correo electrónico debe contener texto.',
-            'email.email' => 'Por favor ingrese un correo electrónico válido.',
-            'email.exists' => 'No encontramos un usuario con esta dirección de correo electrónico.',
+            'identity.required' => 'Ingrese su número de documento o colegiado.',
+            'identity.string'   => 'El número de documento o colegiado no es válido.',
+            'identity.min'      => 'El número de documento o colegiado debe contener como mínimo 2 caracteres.',
+            'identity.max'      => 'El número de documento o colegiado debe contener como máximo 20 caracteres.',
 
             'password.required' => 'Por favor llene el campo contraseña.',
-            'password.string' => 'La contraseña debe contener texto.',
+            'password.string'   => 'La contraseña debe contener texto.',
         ];
         
     }
@@ -59,11 +59,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('numero_documento', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'numero_documento' => trans('auth.failed'),
             ]);
         }
 
@@ -88,7 +88,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            'numero_documento' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -102,7 +102,7 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('email')).'|'.$this->ip();
+        return Str::lower($this->input('numero_documento')).'|'.$this->ip();
     }
 
 }

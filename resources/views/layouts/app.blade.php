@@ -29,8 +29,8 @@
         <script src="{{asset('js/app.js')}}"></script> --}}
     </head>
     <body
-        class="font-sans antialiased bg-[--complementary-primary-color] bg-auth bg-fixed text-[--light-color] overflow-x-hidden"
-        style="background-image: url({{ asset('images/fondo-azul.png') }});"
+        class="font-sans antialiased bg-[--complementary-primary-color] bg-auth bg-fixed text-[--dark-color] overflow-x-hidden"
+        style="background-image: url({{ asset('images/portadas/futbol-banner.jpg') }});"
     >
         <div class="min-h-screen">
             @include('layouts.navigation')

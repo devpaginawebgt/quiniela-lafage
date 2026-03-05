@@ -19,18 +19,32 @@
         >
             @csrf
             
-            <div class="mt-2 mb-4">
-                <x-label for="documento" :value="__('Número de Documento')" />
+            <!-- Email Address -->
+            <div>
+                <x-label for="numero_documento" :value="__('Número de documento')" />
 
                 <x-input
-                    id="documento"
+                    id="numero_documento"
                     class="block mt-1 w-full"
                     type="text"
-                    name="numero_documento"
+                    name="identity"
                     :value="old('numero_documento')"
                     required
                     autofocus
-                    maxlength="13"
+                />
+            </div>
+
+            <!-- Password -->
+            <div class="my-4">
+                <x-label for="password" :value="__('Contraseña')" />
+
+                <x-input
+                    id="password"
+                    class="block mt-1 w-full"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="password"
                 />
             </div>
 

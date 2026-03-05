@@ -1,7 +1,21 @@
 
 <x-guest-layout>
-    <x-auth-card>
-        @php
+    <div
+        class="min-h-screen flex flex-col justify-center items-center pt-6 px-4 sm:pt-0 bg-auth bg-[--dark-color]"
+        style="background-image: url({{ asset('images/portadas/futbol-banner.jpg') }});"
+    >
+
+        <div class="w-full sm:max-w-lg p-6 h-auto bg-[--complementary-primary-color] bg-opacity-80 shadow-md rounded-3xl overflow-y-auto">
+            <div class="w-full flex justify-center mb-4">
+                <img
+                    src="/images/logos/logo-lafage.png"
+                    class="max-w-[12rem]"
+                    alt=""
+                >
+            </div>
+
+
+            @php
             // $ip = urlencode($_SERVER['REMOTE_ADDR']);
             // $apiKey = env('GEOLOCATION_API_KEY');
             // $url = "http://api.ipinfo.io/lite/{$ip}?token={$apiKey}";
@@ -20,225 +34,227 @@
             </div>
         @endif
 
-        <form
-            method="POST"
-            action="{{ route('register.dependiente') }}"
-            class="grid grid-cols-2 gap-4 formulario-auth mb-1"
-        >
-            @csrf
+            <form
+                method="POST"
+                action="{{ route('register.dependiente') }}"
+                class="grid grid-cols-2 gap-4 formulario-auth mb-1"
+            >
+                @csrf
 
-            <!-- Name -->
-            <div>
-                <x-label
-                    for="nombres"
-                    :value="__('Nombres')"
-                />
+                <!-- Name -->
+                <div>
+                    <x-label
+                        for="nombres"
+                        :value="__('Nombres')"
+                    />
 
-                <x-input
-                    id="nombres"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="nombres"
-                    :value="old('nombres')"
-                    required
-                />
-            </div>
+                    <x-input
+                        id="nombres"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="nombres"
+                        :value="old('nombres')"
+                        required
+                    />
+                </div>
 
-            <!-- Name -->
-            <div>
-                <x-label
-                    for="apellidos"
-                    :value="__('Apellidos')"
-                />
+                <!-- Name -->
+                <div>
+                    <x-label
+                        for="apellidos"
+                        :value="__('Apellidos')"
+                    />
 
-                <x-input
-                    id="apellidos"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="apellidos"
-                    :value="old('apellidos')"
-                    required
-                />
-            </div>
+                    <x-input
+                        id="apellidos"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="apellidos"
+                        :value="old('apellidos')"
+                        required
+                    />
+                </div>
 
-            <!-- Name -->
-            <div>
-                <x-label
-                    for="numero_documento"
-                    :value="__('DPI')"
-                />
+                <!-- Name -->
+                <div>
+                    <x-label
+                        for="numero_documento"
+                        :value="__('DPI')"
+                    />
 
-                <x-input
-                    id="numero_documento"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="numero_documento"
-                    :maxlength="13"
-                    :value="old('numero_documento')"
-                    required
-                />
-            </div>
+                    <x-input
+                        id="numero_documento"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="numero_documento"
+                        :maxlength="13"
+                        :value="old('numero_documento')"
+                        required
+                    />
+                </div>
 
-            <!-- Name -->
-            <div>
-                <x-label
-                    for="telefono"
-                    :value="__('Teléfono')"
-                />
+                <!-- Name -->
+                <div>
+                    <x-label
+                        for="telefono"
+                        :value="__('Teléfono')"
+                    />
 
-                <x-input
-                    id="telefono"
-                    class="block mt-1 w-full"
-                    type="text"
-                    :maxlength="8"
-                    name="telefono"
-                    :value="old('telefono')"
-                    required
-                />
-            </div>
+                    <x-input
+                        id="telefono"
+                        class="block mt-1 w-full"
+                        type="text"
+                        :maxlength="8"
+                        name="telefono"
+                        :value="old('telefono')"
+                        required
+                    />
+                </div>
 
 
-            <!-- Email Address -->
-            <div>
-                <x-label
-                    for="email"
-                    :value="__('Correo Electrónico')"
-                />
+                <!-- Email Address -->
+                <div>
+                    <x-label
+                        for="email"
+                        :value="__('Correo Electrónico')"
+                    />
 
-                <x-input
-                    id="email"
-                    class="block mt-1 w-full"
-                    type="email"
-                    name="email"
-                    :value="old('email')"
-                    required
-                />
-            </div>
+                    <x-input
+                        id="email"
+                        class="block mt-1 w-full"
+                        type="email"
+                        name="email"
+                        :value="old('email')"
+                        required
+                    />
+                </div>
 
-            <div>
-                <x-label
-                    for="pais_id"
-                    :value="__('Pais')"
-                />
+                <div>
+                    <x-label
+                        for="pais_id"
+                        :value="__('Pais')"
+                    />
 
-                <select
-                    name="pais_id"
-                    id="pais_id"
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
-                    required
-                >
-                    @php
-                        $paises = [
-                            1 => 'Guatemala',
-                            2 => 'Honduras'
-                        ];
-                    @endphp
-
-                    @foreach ($paises as $value => $nombre_pais)
+                    <select
+                        name="pais_id"
+                        id="pais_id"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
+                        required
+                    >
                         @php
-                            $selected = old('pais_id') == $value ? 'selected' : '';
+                            $paises = [
+                                1 => 'Guatemala',
+                                2 => 'Honduras'
+                            ];
                         @endphp
-                        <option value="{{ $value }}" {{ $selected }}>
-                            {{ $nombre_pais }}
-                        </option>    
-                    @endforeach
-                </select>
-            </div>
 
-            <div class="col-span-2">
-                <x-label
-                    for="direccion"
-                    :value="__('Dirección')"
-                />
+                        @foreach ($paises as $value => $nombre_pais)
+                            @php
+                                $selected = old('pais_id') == $value ? 'selected' : '';
+                            @endphp
+                            <option value="{{ $value }}" {{ $selected }}>
+                                {{ $nombre_pais }}
+                            </option>    
+                        @endforeach
+                    </select>
+                </div>
 
-                <x-input
-                    id="direccion"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="direccion"
-                    :value="old('direccion')"
-                    required
-                    maxlength="200"
-                />
-            </div>
+                <div class="col-span-2">
+                    <x-label
+                        for="direccion"
+                        :value="__('Dirección')"
+                    />
 
-            <div>
-                <x-label
-                    for="cadena"
-                    :value="__('Cadena')"
-                />
+                    <x-input
+                        id="direccion"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="direccion"
+                        :value="old('direccion')"
+                        required
+                        maxlength="200"
+                    />
+                </div>
 
-                <select
-                    name="company_id"
-                    id="cadena"
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
-                    required
-                >
-                    @php
-                        $cadenas = [
-                            1 => 'Cadena 1',
-                            2 => 'Cadena 2'
-                        ];
-                    @endphp
+                <div>
+                    <x-label
+                        for="cadena"
+                        :value="__('Cadena')"
+                    />
 
-                    @foreach ($cadenas as $value => $nombre_cadena)
+                    <select
+                        name="company_id"
+                        id="cadena"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
+                        required
+                    >
                         @php
-                            $selected = old('company_id') == $value ? 'selected' : '';
+                            $cadenas = [
+                                1 => 'Cadena 1',
+                                2 => 'Cadena 2'
+                            ];
                         @endphp
-                        <option value="{{ $value }}" {{ $selected }}>
-                            {{ $nombre_cadena }}
-                        </option>    
-                    @endforeach
-                </select>
-            </div>
 
-             <div>
-                <x-label
-                    for="sucursal"
-                    :value="__('Sucursal')"
-                />
+                        @foreach ($cadenas as $value => $nombre_cadena)
+                            @php
+                                $selected = old('company_id') == $value ? 'selected' : '';
+                            @endphp
+                            <option value="{{ $value }}" {{ $selected }}>
+                                {{ $nombre_cadena }}
+                            </option>    
+                        @endforeach
+                    </select>
+                </div>
 
-                <select
-                    name="branch_id"
-                    id="sucursal"
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
-                    required
-                >
-                    @php
-                        $sucursales = [
-                            1 => 'Cadena 1',
-                            2 => 'Cadena 2'
-                        ];
-                    @endphp
+                <div>
+                    <x-label
+                        for="sucursal"
+                        :value="__('Sucursal')"
+                    />
 
-                    @foreach ($sucursales as $value => $nombre_sucursal)
+                    <select
+                        name="branch_id"
+                        id="sucursal"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
+                        required
+                    >
                         @php
-                            $selected = old('branch_id') == $value ? 'selected' : '';
+                            $sucursales = [
+                                1 => 'Cadena 1',
+                                2 => 'Cadena 2'
+                            ];
                         @endphp
-                        <option value="{{ $value }}" {{ $selected }}>
-                            {{ $nombre_sucursal }}
-                        </option>    
-                    @endforeach
-                </select>
-            </div>
 
-            <div class="col-span-2 flex flex-col items-start gap-4 mt-2">
-                {{-- <a
-                    class="w-full bg-[--secondary-color] text-[--dark-color] font-semibold rounded-md text-sm px-4 py-2 hover:brightness-[1.10] focus:ring-4 focus:ring-[--light-color] text-center"
-                    href="{{ route('ingresa') }}"
-                >
-                    {{ __('Registrarme') }}
-                </a> --}}
-                <x-button class="w-full">
-                    {{ __('Registrarme') }}
-                </x-button>
+                        @foreach ($sucursales as $value => $nombre_sucursal)
+                            @php
+                                $selected = old('branch_id') == $value ? 'selected' : '';
+                            @endphp
+                            <option value="{{ $value }}" {{ $selected }}>
+                                {{ $nombre_sucursal }}
+                            </option>    
+                        @endforeach
+                    </select>
+                </div>
 
-                <a class="text-sm text-[--complementary-light-color] hover:text-[--light-color]" href="{{ route('ingresa') }}">
-                    {{ __('Ya estoy registrado') }}
-                </a>
-            </div>
-        </form>
-    </x-auth-card>
+                <div class="col-span-2 flex flex-col items-start gap-4 mt-2">
+                    {{-- <a
+                        class="w-full bg-[--secondary-color] text-[--dark-color] font-semibold rounded-md text-sm px-4 py-2 hover:brightness-[1.10] focus:ring-4 focus:ring-[--light-color] text-center"
+                        href="{{ route('ingresa') }}"
+                    >
+                        {{ __('Registrarme') }}
+                    </a> --}}
+                    <x-button class="w-full">
+                        {{ __('Registrarme') }}
+                    </x-button>
+
+                    <a class="text-sm text-[--complementary-secondary-color] hover:text-[--secondary-color]" href="{{ route('ingresa') }}">
+                        {{ __('Ya estoy registrado') }}
+                    </a>
+                </div>
+            </form>
+            
+        </div>
+    </div>
 
     <div
         id="terms-conditions" 
