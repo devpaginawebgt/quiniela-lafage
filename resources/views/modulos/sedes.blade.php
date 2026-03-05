@@ -29,7 +29,14 @@
                                 <div class="mb-2 xl:text-xl font-semibold tracking-tight flex gap-4 justify-center items-center">
                                     {{ $estadio->nombre }}
                                     <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 16 16"><path fill="currentColor" d="M3.2 5.74a.75.75 0 0 1 1.06-.04L8 9.227L11.74 5.7a.75.75 0 1 1 1.02 1.1l-4.25 4a.75.75 0 0 1-1.02 0l-4.25-4a.75.75 0 0 1-.04-1.06"/></svg>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 12 12"><path
+                                            fill="currentColor"
+                                            d="M3.076 4.617A1 1 0 0 1 4 4h4a1 1 0 0 1 .707 1.707l-2 2a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1-.217-1.09"
+                                        /></svg>
                                     </span>
                                 </div>
                                 <div class="container-{{ $estadio->id }} hidden">
