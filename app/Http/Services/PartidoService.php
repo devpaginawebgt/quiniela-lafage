@@ -31,7 +31,8 @@ class PartidoService {
                 $query->where('jornada_id', $jornada);
             })
             ->with([
-                'partido:id,fase,jornada_id,fecha_partido,jugado,estado',
+                'partido:id,fase,jornada_id,fecha_partido,jugado,estado,brand_id',
+                'partido.brand',
                 'equipoUno:id,nombre,imagen,grupo',
                 'equipoDos:id,nombre,imagen,grupo'
             ])
@@ -62,9 +63,10 @@ class PartidoService {
                     $query->where('grupo', $grupo);
                 })
                 ->with([
-                    'partido:id,fase,jornada_id,fecha_partido,jugado,estado',
+                    'partido:id,fase,jornada_id,fecha_partido,jugado,estado,brand_id',
+                    'partido.brand',
                     'equipoUno:id,nombre,imagen,grupo',
-                    'equipoDos:id,nombre,imagen,grupo'
+                    'equipoDos:id,nombre,imagen,grupo',
                 ])
                 ->get();
 

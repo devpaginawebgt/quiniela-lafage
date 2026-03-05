@@ -15,13 +15,21 @@ class CreatePartidosTable extends Migration
     {
         Schema::create('partidos', function (Blueprint $table) {
             $table->id();
+
             $table->string('fase')->nullable();
             $table->unsignedBigInteger('jornada_id');
             $table->dateTime('fecha_partido')->index();
             $table->unsignedBigInteger('estadio_id');
             $table->integer('jugado')->default(0);
             $table->integer('estado')->index()->default(0);
+            $table->unsignedBigInteger('brand_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('brand_id')
+                ->references('id')
+                ->on('brands')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
 
             $table->foreign('estadio_id')
                 ->references('id')

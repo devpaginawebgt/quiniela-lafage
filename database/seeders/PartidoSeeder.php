@@ -27,6 +27,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 11, 15, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -37,6 +38,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 11, 22, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -52,6 +54,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 18, 12, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -62,6 +65,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 18, 21, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -77,6 +81,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 24, 21, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -87,6 +92,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 24, 21, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -102,6 +108,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 12, 15, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -112,6 +119,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 13, 15, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -127,6 +135,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 18, 15, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -137,6 +146,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 18, 18, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -152,6 +162,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 24, 15, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -162,6 +173,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 24, 15, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -177,6 +189,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 13, 18, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -187,6 +200,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 13, 21, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -202,6 +216,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 19, 18, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -212,6 +227,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 19, 21, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -227,6 +243,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 24, 18, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -237,6 +254,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 24, 18, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -252,6 +270,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 12, 21, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -262,6 +281,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 13, 0, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -277,6 +297,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 19, 15, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -287,6 +308,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 19, 0, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -302,6 +324,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 25, 22, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -312,6 +335,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 25, 22, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -327,6 +351,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 14, 13, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -337,6 +362,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 1,
                 'fecha_partido' => Carbon::create(2026, 6, 14, 19, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -352,6 +378,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 20, 16, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -362,6 +389,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 2,
                 'fecha_partido' => Carbon::create(2026, 6, 20, 22, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -377,6 +405,7 @@ class PartidoSeeder extends Seeder
 
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 25, 16, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')
@@ -387,6 +416,7 @@ class PartidoSeeder extends Seeder
             ],
             [
                 'fase' => 'GRUPOS',
+                'brand_id' => 1,
                 'jornada_id' => 3,
                 'fecha_partido' => Carbon::create(2026, 6, 25, 16, 0, 0, 'America/New_York')
                     ->setTimezone('UTC')

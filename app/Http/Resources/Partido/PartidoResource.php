@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Partido;
 
+use App\Http\Resources\Brand\BrandResource;
 use App\Http\Resources\Equipo\EquipoPartidoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -39,15 +40,16 @@ class PartidoResource extends JsonResource
         $fecha_partido->setTimezone($user_timezone);
 
         return [
-            'id' => $this->partido->id,            
+            'id'           => $this->partido->id,            
             'fechaPartido' => $fecha_partido->format('Y-m-d H:i:s'),
-            'jugado' => $this->partido->jugado === 1,
-            'idEstado' => $this->partido->estado,
-            'jornada' => $this->partido->jornada_id,
-            'estado' => $estado,
+            'jugado'       => $this->partido->jugado === 1,
+            'idEstado'     => $this->partido->estado,
+            'jornada'      => $this->partido->jornada_id,
+            'estado'       => $estado,
 
-            'equipoUno' => new EquipoPartidoResource($this->equipoUno),
-            'equipoDos' => new EquipoPartidoResource($this->equipoDos),
+            'equipoUno'    => new EquipoPartidoResource($this->equipoUno),
+            'equipoDos'    => new EquipoPartidoResource($this->equipoDos),
+            'marca'        => !empty($this->partido->brand) ? new BrandResource($this->partido->brand) : null,
         ];
     }
 }
