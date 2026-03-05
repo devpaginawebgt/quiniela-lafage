@@ -14,14 +14,9 @@ class LineSeeder extends Seeder
     public function run(): void
     {
         $lineas = [
-            ['name' => 'Línea Urológica'],
             ['name' => 'Línea Dolor'],
-            ['name' => 'Línea Osteoarticular'],
-            ['name' => 'Línea Ginecológica'],
-            ['name' => 'Línea Cardiometabólica'],
-            ['name' => 'Línea Gastroentereológica'],
-            ['name' => 'Línea Gastroenterológica'],
-            ['name' => 'Línea Dermatológica'],
+            ['name' => 'Línea Salud Integral'],
+            ['name' => 'Línea Salud Femenina'], 
         ];
 
         foreach($lineas as $linea) {

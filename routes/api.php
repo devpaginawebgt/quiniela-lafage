@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ApiAuthController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EstadioController;
@@ -65,6 +66,10 @@ Route::middleware(['auth:sanctum'])->group(function() {
 
     Route::controller(ModuleController::class)->prefix('modules')->group(function() {
         Route::get('{module_code}/banners', 'banners');
+    });
+
+    Route::controller(BrandController::class)->prefix('marcas')->group(function() {
+        Route::get('', 'index');
     });
 
     Route::controller(ApiAuthController::class)->group(function() {

@@ -15,7 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
+            $table->unsignedBigInteger('line_id');
             $table->timestamps();
+
+            $table->foreign('line_id')
+                ->references('id')
+                ->on('lines')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 
