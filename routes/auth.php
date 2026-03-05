@@ -30,8 +30,6 @@ Route::middleware('guest')->group(function () {
 
         Route::post('dependiente', [RegisteredUserController::class, 'store'])->name('.dependiente');
 
-        Route::post('doctor', [RegisteredUserController::class, 'storeDoctor'])->name('.doctor');
-
         Route::get('/', function () {
             return redirect()->route('register.dependiente');
         });

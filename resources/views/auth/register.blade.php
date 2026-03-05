@@ -24,6 +24,25 @@
             $paisCliente = 'GT';
         @endphp
 
+        <h2 class="text-center text-lg text-[--complementary-dark-color]">Regístrate</h2>
+
+        <ul class="flex justify-center items-center mt-4 mb-6 border rounded-xl overflow-hidden">
+            <li class="w-full">
+                <div class="w-full text-center bg-[--complementary-secondary-color] text-[--light-color]">
+                    <div class="px-4 py-2 cursor-default"> 
+                        Dependiente
+                    </div>
+                </div>
+            </li>
+            <li class="w-full">
+                <a href="{{ route('register.doctor') }}" class="w-full text-center">
+                    <div class="px-4 py-2">
+                        Doctor
+                    </div>
+                </a>
+            </li>
+        </ul>
+
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -41,6 +60,8 @@
             >
                 @csrf
 
+                <input type="hidden" name="user_type_id" value="1">
+
                 <!-- Name -->
                 <div>
                     <x-label
@@ -50,7 +71,7 @@
 
                     <x-input
                         id="nombres"
-                        class="block mt-1 w-full"
+                        class="block mt-1 w-full text-sm"
                         type="text"
                         name="nombres"
                         :value="old('nombres')"
@@ -67,7 +88,7 @@
 
                     <x-input
                         id="apellidos"
-                        class="block mt-1 w-full"
+                        class="block mt-1 w-full text-sm"
                         type="text"
                         name="apellidos"
                         :value="old('apellidos')"
@@ -84,7 +105,7 @@
 
                     <x-input
                         id="numero_documento"
-                        class="block mt-1 w-full"
+                        class="block mt-1 w-full text-sm"
                         type="text"
                         name="numero_documento"
                         :maxlength="13"
@@ -94,7 +115,7 @@
                 </div>
 
                 <!-- Name -->
-                <div>
+                {{-- <div>
                     <x-label
                         for="telefono"
                         :value="__('Teléfono')"
@@ -109,7 +130,7 @@
                         :value="old('telefono')"
                         required
                     />
-                </div>
+                </div> --}}
 
 
                 <!-- Email Address -->
@@ -121,7 +142,7 @@
 
                     <x-input
                         id="email"
-                        class="block mt-1 w-full"
+                        class="block mt-1 w-full text-sm"
                         type="email"
                         name="email"
                         :value="old('email')"
@@ -138,7 +159,7 @@
                     <select
                         name="pais_id"
                         id="pais_id"
-                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4 text-sm"
                         required
                     >
                         @php
@@ -159,90 +180,57 @@
                     </select>
                 </div>
 
-                <div class="col-span-2">
+                <div>
                     <x-label
-                        for="direccion"
-                        :value="__('Dirección')"
+                        for="linea"
+                        :value="__('Línea')"
                     />
+
+                    <select
+                        name="line_id"
+                        id="linea"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4 text-sm"
+                        required
+                    >
+                        @foreach ($lines as $line)
+                            @php
+                                $selected = old('line_id') == $line->id ? 'selected' : '';
+                            @endphp
+                            <option value="{{ $line->id }}" {{ $selected }}>
+                                {{ $line->name }}
+                            </option>    
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <x-label for="password" :value="__('Contraseña')" />
 
                     <x-input
-                        id="direccion"
-                        class="block mt-1 w-full"
-                        type="text"
-                        name="direccion"
-                        :value="old('direccion')"
+                        id="password"
+                        class="block mt-1 w-full text-sm"
+                        type="password"
+                        name="password"
                         required
-                        maxlength="200"
+                        autocomplete="new-password"
                     />
                 </div>
 
+                <!-- Confirm Password -->
                 <div>
-                    <x-label
-                        for="cadena"
-                        :value="__('Cadena')"
-                    />
+                    <x-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
 
-                    <select
-                        name="company_id"
-                        id="cadena"
-                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
+                    <x-input
+                        id="password_confirmation"
+                        class="block mt-1 w-full text-sm"
+                        type="password"
+                        name="password_confirmation"
                         required
-                    >
-                        @php
-                            $cadenas = [
-                                1 => 'Cadena 1',
-                                2 => 'Cadena 2'
-                            ];
-                        @endphp
-
-                        @foreach ($cadenas as $value => $nombre_cadena)
-                            @php
-                                $selected = old('company_id') == $value ? 'selected' : '';
-                            @endphp
-                            <option value="{{ $value }}" {{ $selected }}>
-                                {{ $nombre_cadena }}
-                            </option>    
-                        @endforeach
-                    </select>
-                </div>
-
-                <div>
-                    <x-label
-                        for="sucursal"
-                        :value="__('Sucursal')"
                     />
-
-                    <select
-                        name="branch_id"
-                        id="sucursal"
-                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
-                        required
-                    >
-                        @php
-                            $sucursales = [
-                                1 => 'Cadena 1',
-                                2 => 'Cadena 2'
-                            ];
-                        @endphp
-
-                        @foreach ($sucursales as $value => $nombre_sucursal)
-                            @php
-                                $selected = old('branch_id') == $value ? 'selected' : '';
-                            @endphp
-                            <option value="{{ $value }}" {{ $selected }}>
-                                {{ $nombre_sucursal }}
-                            </option>    
-                        @endforeach
-                    </select>
                 </div>
 
                 <div class="col-span-2 flex flex-col items-start gap-4 mt-2">
-                    {{-- <a
-                        class="w-full bg-[--secondary-color] text-[--dark-color] font-semibold rounded-md text-sm px-4 py-2 hover:brightness-[1.10] focus:ring-4 focus:ring-[--light-color] text-center"
-                        href="{{ route('ingresa') }}"
-                    >
-                        {{ __('Registrarme') }}
-                    </a> --}}
                     <x-button class="w-full">
                         {{ __('Registrarme') }}
                     </x-button>
@@ -261,14 +249,14 @@
         class="hidden overflow-hidden fixed top-0 right-0 left-0 z-50 w-screen inset-0 min-h-screen bg-[gray-800] bg-opacity-50 backdrop-blur-sm"
     >
         <div class="relative w-full min-h-screen flex justify-center items-center">
-            <div class="relative rounded-sm shadow p-6 h-full bg-[--complementary-primary-color] border border-white flex flex-col items-center justify-center w-full max-w-2xl text-center">
+            <div class="relative rounded-lg shadow p-6 h-full bg-[--complementary-primary-color] border border-white flex flex-col items-center justify-center w-full max-w-2xl text-center">
                 <p class="text-lg mb-6">
                     Antes de continuar lee cuidadosamente el siguiente documento de Términos y Condiciones para participar en el sistema de Quiniela
                 </p>
 
                 <div class="flex justify-between rounded-md overflow-hidden mb-6">
                     <a
-                        class="w-full flex items-center gap-3 text-sm text-[--light-color] py-3 px-3 bg-[--primary-color] hover:brightness-[1.20]"
+                        class="w-full flex items-center gap-3 text-sm text-[--light-color] py-3 px-3 bg-[--complementary-secondary-color] hover:brightness-[1.20]"
                         href="/docs/terminos-y-condiciones-donovan.pdf"
                         target="_blank"
                     >
@@ -277,7 +265,7 @@
                     </a>
 
                     <a
-                        class="flex items-center gap-2 py-3 px-3 bg-[--primary-color] hover:brightness-[1.20]"
+                        class="flex items-center gap-2 py-3 px-3 bg-[--complementary-secondary-color] hover:brightness-[1.20]"
                         href="/docs/terminos-y-condiciones-donovan.pdf"
                         download
                     >
@@ -295,7 +283,7 @@
                 <button
                     id="btnAceptar"
                     onclick="hideElement(this.parentElement.parentElement.parentElement)"
-                    class="hidden mx-auto bg-[--secondary-color] text-[--dark-color] font-semibold rounded-sm text-sm px-4 py-2 text-center hover:brightness-[1.10] focus:ring-4 focus:ring-[--light-color]"
+                    class="hidden mx-auto bg-[--secondary-color] text-[--light-color] rounded-lg font-semibold text-sm px-4 py-2 text-center hover:brightness-[1.10] focus:ring-4 focus:ring-[--light-color]"
                 >
                     Acepto los Términos y Condiciones
                 </button>

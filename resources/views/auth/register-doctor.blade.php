@@ -13,6 +13,25 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <h2 class="text-center text-lg text-[--complementary-dark-color]">Regístrate</h2>
+
+        <ul class="flex justify-center items-center mt-4 mb-6 border rounded-xl overflow-hidden">
+            <li class="w-full">
+                <a href="{{ route('register.dependiente') }}" class="w-full text-center">
+                    <div class="px-4 py-2">
+                        Dependiente
+                    </div>
+                </a>
+            </li>
+            <li class="w-full">
+                <div class="w-full text-center bg-[--complementary-secondary-color] text-[--light-color]">
+                    <div class="px-4 py-2 cursor-default"> 
+                        Doctor
+                    </div>
+                </div>
+            </li>
+        </ul>
+
         @if (isset($message_error))
             <div class="bg-red-300 px-4 py-2 text-red-900 rounded-xl text-center" id="message-view">
                 <h3 class="text-2xl font-bold">Error al registrarse</h3>
@@ -22,10 +41,12 @@
 
         <form
             method="POST"
-            action="{{ route('register.doctor') }}"
+            action="{{ route('register.dependiente') }}"
             class="grid grid-cols-2 gap-4 formulario-auth mb-1"
         >
             @csrf
+
+            <input type="hidden" name="user_type_id" value="2">
 
             <!-- Name -->
             <div>
@@ -36,7 +57,7 @@
 
                 <x-input
                     id="nombres"
-                    class="block mt-1 w-full"
+                    class="block mt-1 w-full text-sm"
                     type="text"
                     name="nombres"
                     :value="old('nombres')"
@@ -53,7 +74,7 @@
 
                 <x-input
                     id="apellidos"
-                    class="block mt-1 w-full"
+                    class="block mt-1 w-full text-sm"
                     type="text"
                     name="apellidos"
                     :value="old('apellidos')"
@@ -70,7 +91,7 @@
 
                 <x-input
                     id="numero_documento"
-                    class="block mt-1 w-full"
+                    class="block mt-1 w-full text-sm"
                     type="text"
                     name="numero_documento"
                     :maxlength="13"
@@ -80,7 +101,7 @@
             </div>
 
             <!-- Name -->
-            <div>
+            {{-- <div>
                 <x-label
                     for="telefono"
                     :value="__('Teléfono')"
@@ -95,7 +116,7 @@
                     :value="old('telefono')"
                     required
                 />
-            </div>
+            </div> --}}
 
 
             <!-- Email Address -->
@@ -107,7 +128,7 @@
 
                 <x-input
                     id="email"
-                    class="block mt-1 w-full"
+                    class="block mt-1 w-full text-sm"
                     type="email"
                     name="email"
                     :value="old('email')"
@@ -124,7 +145,7 @@
                 <select
                     name="pais_id"
                     id="pais_id"
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4"
+                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4 text-sm"
                     required
                 >
                     @php
@@ -145,88 +166,72 @@
                 </select>
             </div>
 
-            <div class="col-span-2">
-                <x-label
-                    for="direccion"
-                    :value="__('Dirección')"
-                />
-
-                <x-input
-                    id="direccion"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="direccion"
-                    :value="old('direccion')"
-                    required
-                    maxlength="200"
-                />
-            </div>
-
             <div>
                 <x-label
-                    for="region"
-                    :value="__('Región')"
-                />
-
-                <x-input
-                    id="region"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="region"
-                    :value="old('region')"
-                    required
-                    maxlength="100"
-                />
-            </div>
-
-            <div>
-                <x-label
-                    for="capital"
-                    :value="__('Capital')"
-                />
-
-                <x-input
-                    id="capital"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="capital"
-                    :value="old('capital')"
-                    required
-                    maxlength="100"
-                />
-            </div>
-
-            <div class="col-span-2">
-                <x-label
-                    for="visitor"
-                    :value="__('Visitador')"
+                    for="linea"
+                    :value="__('Línea')"
                 />
 
                 <select
-                    name="visitor_id"
-                    id="visitor"
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 text-sm"
+                    name="line_id"
+                    id="linea"
+                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full h-10 px-4 text-sm"
                     required
                 >
-                    <option value="">
-                        Seleccionar
-                    </option>
-                    @php
-                        $visitadores = [
-                            1 => 'Fernando José Hernández López',
-                            2 => 'María Alejandra Lutín'
-                        ];
-                    @endphp
-
-                    @foreach ($visitadores as $value => $nombre_visitador)
+                    @foreach ($lines as $line)
                         @php
-                            $selected = old('visitor_id') == $value ? 'selected' : '';
+                            $selected = old('line_id') == $line->id ? 'selected' : '';
                         @endphp
-                        <option value="{{ $value }}" {{ $selected }}>
-                            {{ $nombre_visitador }}
+                        <option value="{{ $line->id }}" {{ $selected }}>
+                            {{ $line->name }}
                         </option>    
                     @endforeach
                 </select>
+            </div>
+
+            <!-- Colegiado -->
+            <div class="col-span-2">
+                <x-label
+                    for="colegiado"
+                    :value="__('No. de Colegiado')"
+                />
+
+                <x-input
+                    id="colegiado"
+                    class="block mt-1 w-full text-sm"
+                    type="text"
+                    name="colegiado"
+                    :maxlength="13"
+                    :value="old('colegiado')"
+                    required
+                />
+            </div>
+
+            <!-- Password -->
+            <div>
+                <x-label for="password" :value="__('Contraseña')" />
+
+                <x-input
+                    id="password"
+                    class="block mt-1 w-full text-sm"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="new-password"
+                />
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+                <x-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
+
+                <x-input
+                    id="password_confirmation"
+                    class="block mt-1 w-full text-sm"
+                    type="password"
+                    name="password_confirmation"
+                    required
+                />
             </div>
 
             <div class="col-span-2 flex flex-col items-start gap-4 mt-2">

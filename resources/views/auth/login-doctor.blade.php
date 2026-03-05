@@ -10,7 +10,7 @@
 
         <ul class="flex justify-center items-center mt-4 mb-6 border rounded-xl overflow-hidden">
             <li class="w-full">
-                <a href="/ingresa" class="w-full text-center">
+                <a href="{{ route('ingresa') }}" class="w-full text-center">
                     <div class="px-4 py-2">
                         Dependiente
                     </div>

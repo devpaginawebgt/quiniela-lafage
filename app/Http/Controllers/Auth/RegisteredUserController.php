@@ -8,12 +8,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterDoctorRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Services\LineService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 class RegisteredUserController extends Controller
 {
+    public function __construct(
+        private readonly LineService $lineService
+    ) {}
     /**
      * Display the registration view.
      *
@@ -21,12 +25,20 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $lines = $this->lineService->getLines();
+
+        return view('auth.register', [
+            'lines' => $lines
+        ]);
     }
 
     public function createDoctor()
     {
-        return view('auth.register-doctor');
+        $lines = $this->lineService->getLines();
+
+        return view('auth.register-doctor', [
+            'lines' => $lines
+        ]);
     }
 
     /**
@@ -40,32 +52,10 @@ class RegisteredUserController extends Controller
     public function store(RegisterRequest $request)
     {
         $data = $request->validated();
-
-        $data['user_type_id'] = 1;
-
-        $pass = env('DEFAULT_PASS');
         
-        $data['password'] = Hash::make($pass);
+        $data['password'] = Hash::make($data['password']);
 
-        $user = User::create($data);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
-        
-    }
-
-    public function storeDoctor(RegisterDoctorRequest $request)
-    {
-        $data = $request->validated();
-
-        $data['user_type_id'] = 2;
-
-        $pass = env('DEFAULT_PASS');
-        
-        $data['password'] = Hash::make($pass);
+        $data['puntos'] = 0;
 
         $user = User::create($data);
 

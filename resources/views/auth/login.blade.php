@@ -17,7 +17,7 @@
                 </div>
             </li>
             <li class="w-full">
-                <a href="/ingresa-doctor" class="w-full text-center">
+                <a href="{{ route('ingresa-doctor') }}" class="w-full text-center">
                     <div class="px-4 py-2">
                         Doctor
                     </div>
