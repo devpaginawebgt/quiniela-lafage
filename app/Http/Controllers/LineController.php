@@ -20,6 +20,8 @@ class LineController extends Controller
     {   
         $lines = $this->lineService->getLines();
 
-        return LineResource::collection($lines);
+        $lines = LineResource::collection($lines);
+
+        return $this->successResponse($lines);
     }
 }
