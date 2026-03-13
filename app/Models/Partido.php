@@ -17,6 +17,7 @@ class Partido extends Model
        'jornada_id',
        'fecha_partido',
        'estadio_id',
+       'brand_id',
        'jugado',
        'estado',
     ];
