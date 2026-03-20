@@ -23,8 +23,8 @@ class BannerSeeder extends Seeder
             [
                 'name'      => 'banner-neurotazarol-hn',
                 'url'       => '/images/banners/Banner-Principal-Neurotazarol-1080x660.png',
-                'module_id' => 2,
-                'line_id'   => 1,
+                'module_id' => 1,
+                'line_id'   => 2,
             ],
         ];
 
