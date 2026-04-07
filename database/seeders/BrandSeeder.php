@@ -14,12 +14,30 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         $brands = [
-            [ 'name'  => 'Neuro Tazarol', 'image' => '/images/brands/tazarol-neuro.png', 'line_id' => 1 ],
-            [ 'name'  => 'Reversal Flex', 'image' => '/images/brands/reversal.png', 'line_id' => 1 ],
-            [ 'name'  => 'Elongal',       'image' => '/images/brands/elongal.png', 'line_id' => 2 ],
-            [ 'name'  => 'Validal',       'image' => '/images/brands/validal.png', 'line_id' => 2 ],
-            [ 'name'  => 'Maximum Fam',   'image' => '', 'line_id' => 3 ],
-            [ 'name'  => 'Uroberry Fam',  'image' => '', 'line_id' => 3 ],
+            [   'name' => 'Neuro Tazarol', 
+                'image' => '/images/brands/tazarol-neuro.png', 
+                'line_id' => 1 
+            ],
+            [   'name' => 'Reversal Flex', 
+                'image' => '/images/brands/reversal.png', 
+                'line_id' => 1 
+            ],
+            [   'name' => 'Elongal',       
+                'image' => '/images/brands/elongal.png', 
+                'line_id' => 2 
+            ],
+            [   'name' => 'Validal',       
+                'image' => '/images/brands/validal.png', 
+                'line_id' => 2 
+            ],
+            [   'name' => 'Maximum Fam',   
+                'image' => '', 
+                'line_id' => 3 
+            ],
+            [   'name' => 'Uroberry Fam',  
+                'image' => '', 
+                'line_id' => 3 
+            ],
         ];
 
         foreach($brands as $brand) {
